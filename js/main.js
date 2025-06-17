@@ -126,30 +126,68 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form submission
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            const button = this.querySelector('.submit-button');
+            const originalText = button.innerHTML;
+            const messageDiv = document.getElementById('form-message');
+            
+            // Show loading state
+            button.innerHTML = '<span>Enviando...</span>';
+            button.disabled = true;
+            button.style.opacity = '0.7';
             
             // Get form data
             const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
             
-            // Here you would normally send the data to your server
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            const button = this.querySelector('.submit-button');
-            const originalText = button.innerHTML;
-            button.innerHTML = '<span>¡Mensaje Enviado! ✓</span>';
-            button.style.background = 'linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)';
-            
-            // Reset form
-            this.reset();
-            
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                button.innerHTML = originalText;
-                button.style.background = '';
-            }, 3000);
+            try {
+                // Send to Web3Forms
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Show success message
+                    messageDiv.style.display = 'block';
+                    messageDiv.style.background = 'linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)';
+                    messageDiv.style.color = 'white';
+                    messageDiv.innerHTML = '¡Gracias! Tu mensaje ha sido enviado. Te contactaremos pronto.';
+                    
+                    button.innerHTML = '<span>¡Enviado! ✓</span>';
+                    button.style.background = 'linear-gradient(135deg, #4ADE80 0%, #22C55E 100%)';
+                    button.disabled = false;
+                    button.style.opacity = '1';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Keep message and button state visible until page reload
+                    return; // Exit early to prevent button reset
+                } else {
+                    throw new Error('Error al enviar el formulario');
+                }
+            } catch (error) {
+                // Show error message
+                messageDiv.style.display = 'block';
+                messageDiv.style.background = '#FEE2E2';
+                messageDiv.style.color = '#DC2626';
+                messageDiv.innerHTML = 'Hubo un error al enviar tu mensaje. Por favor intenta de nuevo o contáctanos al 811 250 0801.';
+                
+                button.innerHTML = '<span>Error - Intentar de nuevo</span>';
+                button.style.background = '#DC2626';
+                
+                // Only reset button for errors
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.style.background = '';
+                    button.disabled = false;
+                    button.style.opacity = '1';
+                }, 3000);
+            }
         });
     }
 

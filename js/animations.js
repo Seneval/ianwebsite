@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
 
-    animateChatDemo();
+    // animateChatDemo(); // Disabled to prevent interference with interactive chat
 
     // Hero visual animation
     function animateHeroVisual() {

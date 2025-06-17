@@ -248,9 +248,9 @@
                         <div class="chat-messages" id="chat-messages">
                             <div class="message bot">
                                 <div class="message-content">
-                                    ¡Hola! 👋 Soy tu asistente virtual con IA. 
-                                    Puedo ayudarte a encontrar el producto perfecto, 
-                                    resolver dudas o asistirte con tu compra. ¿En qué puedo ayudarte?
+                                    ¡Hola! 👋 Soy un chatbot de iAN con IA conversacional. 
+                                    Estoy aquí para mostrarte cómo podemos aumentar tus ventas un 87%. 
+                                    ¿Qué te gustaría saber sobre nuestros chatbots que venden 24/7?
                                 </div>
                             </div>
                         </div>
@@ -585,7 +585,12 @@
                 <div class="cta-content">
                     <h2>¿Listo para <span class="gradient-text">Multiplicar tus Ventas</span>?</h2>
                     <p>Agenda una demo gratuita y descubre cómo tu competencia quedará obsoleta</p>
-                    <form class="contact-form" id="contact-form">
+                    <div id="form-message" style="display: none; margin-bottom: 20px; padding: 15px; border-radius: 8px; text-align: center; font-weight: 500;"></div>
+                    <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="cdc4bf5e-a398-4dbd-8f38-b6628968434a">
+                        <input type="hidden" name="subject" value="Nuevo lead de iAN - Chatbots IA">
+                        <input type="hidden" name="from_name" value="Sitio Web iAN">
+                        
                         <div class="form-group">
                             <input type="text" id="name" name="name" placeholder="Tu nombre" required>
                         </div>
@@ -596,7 +601,7 @@
                             <input type="tel" id="phone" name="phone" placeholder="Tu teléfono">
                         </div>
                         <div class="form-group">
-                            <input type="url" id="website" name="website" placeholder="Tu sitio web">
+                            <input type="text" id="website" name="website" placeholder="Tu sitio web (opcional)">
                         </div>
                         <div class="form-group full-width">
                             <textarea id="message" name="message" rows="4" placeholder="Cuéntanos sobre tu negocio..."></textarea>
