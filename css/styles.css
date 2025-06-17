@@ -311,22 +311,32 @@ section {
     justify-content: flex-start;
 }
 
-.message.typing span {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: var(--primary-purple);
-    border-radius: 50%;
-    margin: 0 2px;
-    animation: typing 1.4s infinite;
-    opacity: 1;
+.message.bot.typing .message-content {
+    background: transparent;
+    padding: 0.75rem 1rem;
+    box-shadow: none;
 }
 
-.message.typing span:nth-child(2) {
+.message.bot.typing .message-content span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-purple);
+    border-radius: 50%;
+    margin: 0 4px;
+    animation: typing 1.4s infinite ease-in-out;
+    vertical-align: middle;
+}
+
+.message.bot.typing .message-content span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.message.bot.typing .message-content span:nth-child(2) {
     animation-delay: 0.2s;
 }
 
-.message.typing span:nth-child(3) {
+.message.bot.typing .message-content span:nth-child(3) {
     animation-delay: 0.4s;
 }
 
