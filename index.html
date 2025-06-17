@@ -106,45 +106,53 @@
                             <div class="chat-messages">
                                 <div class="robot-typing-container">
                                     <div class="robot-animator">
-                                        <svg class="typing-robot" width="80" height="80" viewBox="0 0 80 80" fill="none">
-                                            <!-- Robot Head -->
-                                            <rect x="20" y="15" width="40" height="35" rx="8" fill="url(#robotGradient)"/>
-                                            <!-- Eyes -->
-                                            <circle cx="30" cy="28" r="4" fill="#FFF" class="robot-eye"/>
-                                            <circle cx="50" cy="28" r="4" fill="#FFF" class="robot-eye"/>
-                                            <circle cx="30" cy="28" r="2" fill="#1A202C" class="robot-pupil"/>
-                                            <circle cx="50" cy="28" r="2" fill="#1A202C" class="robot-pupil"/>
-                                            <!-- Mouth -->
-                                            <path d="M30 38 Q40 42 50 38" stroke="#FFF" stroke-width="2" stroke-linecap="round" fill="none"/>
+                                        <svg class="typing-robot" width="120" height="120" viewBox="0 0 120 120" fill="none">
                                             <!-- Antenna -->
-                                            <line x1="40" y1="15" x2="40" y2="8" stroke="url(#robotGradient)" stroke-width="3" stroke-linecap="round"/>
-                                            <circle cx="40" cy="6" r="3" fill="#FFBA08" class="antenna-light"/>
-                                            <!-- Arms typing -->
-                                            <rect x="10" y="40" width="8" height="20" rx="4" fill="url(#robotGradient)" class="robot-arm-left"/>
-                                            <rect x="62" y="40" width="8" height="20" rx="4" fill="url(#robotGradient)" class="robot-arm-right"/>
-                                            <!-- Hands -->
-                                            <circle cx="14" cy="62" r="5" fill="#6B46C1" class="robot-hand-left"/>
-                                            <circle cx="66" cy="62" r="5" fill="#6B46C1" class="robot-hand-right"/>
-                                            <!-- Body -->
-                                            <rect x="25" y="48" width="30" height="25" rx="6" fill="url(#robotGradient)"/>
-                                            <!-- Keyboard hint -->
-                                            <rect x="5" y="68" width="70" height="5" rx="2" fill="#E2E8F0" opacity="0.5"/>
+                                            <line x1="60" y1="30" x2="60" y2="20" stroke="#2D3748" stroke-width="3" stroke-linecap="round"/>
+                                            <circle cx="60" cy="16" r="6" fill="#FFBA08" class="antenna-light"/>
+                                            
+                                            <!-- Main Head/Body -->
+                                            <rect x="25" y="30" width="70" height="50" rx="25" fill="#B794F6"/>
+                                            <rect x="25" y="30" width="70" height="50" rx="25" fill="url(#purpleGradient)" opacity="0.8"/>
+                                            
+                                            <!-- Visor/Face area -->
+                                            <rect x="35" y="40" width="50" height="25" rx="12" fill="#6B46C1" opacity="0.3"/>
+                                            <rect x="35" y="40" width="50" height="25" rx="12" fill="#FFF" opacity="0.2"/>
+                                            
+                                            <!-- Eyes -->
+                                            <circle cx="48" cy="52" r="4" fill="#2D3748" class="robot-eye"/>
+                                            <circle cx="72" cy="52" r="4" fill="#2D3748" class="robot-eye"/>
+                                            
+                                            <!-- Cute mouth -->
+                                            <path d="M55 58 Q60 62 65 58" stroke="#2D3748" stroke-width="2" stroke-linecap="round" fill="none" class="robot-mouth"/>
+                                            
+                                            <!-- Ears/Sides -->
+                                            <rect x="20" y="45" width="8" height="20" rx="4" fill="#9F7AEA"/>
+                                            <rect x="92" y="45" width="8" height="20" rx="4" fill="#9F7AEA"/>
+                                            
+                                            <!-- Body base -->
+                                            <path d="M40 75 Q60 85 80 75 L80 90 Q60 95 40 90 Z" fill="#B794F6"/>
+                                            <circle cx="60" cy="85" r="8" fill="#FFF" opacity="0.3"/>
                                             
                                             <defs>
-                                                <linearGradient id="robotGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                    <stop offset="0%" style="stop-color:#6B46C1" />
-                                                    <stop offset="100%" style="stop-color:#00D9FF" />
+                                                <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                    <stop offset="0%" style="stop-color:#B794F6" />
+                                                    <stop offset="100%" style="stop-color:#6B46C1" />
                                                 </linearGradient>
                                             </defs>
                                         </svg>
                                         <div class="typing-bubble">
-                                            <span class="typing-text">Pensando...</span>
+                                            <span class="typing-text">Analizando tu pregunta</span>
                                             <div class="typing-dots">
                                                 <span></span>
                                                 <span></span>
                                                 <span></span>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="welcome-text">
+                                        <h3>¡Hola! Soy tu Asistente IA</h3>
+                                        <p>En un momento te mostraré cómo puedo ayudarte a vender más</p>
                                     </div>
                                 </div>
                             </div>
