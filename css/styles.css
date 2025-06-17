@@ -311,33 +311,185 @@ section {
     justify-content: flex-start;
 }
 
-.message.bot.typing .message-content {
-    background: transparent;
+/* Robot Typing Animation */
+.robot-typing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 200px;
+}
+
+.robot-animator {
+    position: relative;
+    animation: robotBounce 2s ease-in-out infinite;
+}
+
+.typing-robot {
+    filter: drop-shadow(0 10px 20px rgba(107, 70, 193, 0.2));
+}
+
+/* Robot parts animations */
+.robot-eye {
+    animation: blink 4s infinite;
+}
+
+.robot-pupil {
+    animation: lookAround 3s ease-in-out infinite;
+}
+
+.antenna-light {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.robot-arm-left {
+    transform-origin: 14px 40px;
+    animation: typeLeft 0.5s ease-in-out infinite;
+}
+
+.robot-arm-right {
+    transform-origin: 66px 40px;
+    animation: typeRight 0.5s ease-in-out infinite;
+    animation-delay: 0.25s;
+}
+
+.robot-hand-left,
+.robot-hand-right {
+    animation: handMove 0.5s ease-in-out infinite;
+}
+
+.robot-hand-right {
+    animation-delay: 0.25s;
+}
+
+/* Typing bubble */
+.typing-bubble {
+    position: absolute;
+    top: -40px;
+    right: -60px;
+    background: var(--white);
     padding: 0.75rem 1rem;
-    box-shadow: none;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    animation: bubbleFloat 3s ease-in-out infinite;
 }
 
-.message.bot.typing .message-content span {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    background-color: var(--primary-purple);
+.typing-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--white);
+}
+
+.typing-text {
+    font-size: 0.9rem;
+    color: var(--primary-purple);
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.typing-dots {
+    display: inline-flex;
+    gap: 3px;
+}
+
+.typing-dots span {
+    width: 6px;
+    height: 6px;
+    background: var(--primary-purple);
     border-radius: 50%;
-    margin: 0 4px;
-    animation: typing 1.4s infinite ease-in-out;
-    vertical-align: middle;
+    animation: dotPulse 1.4s ease-in-out infinite;
 }
 
-.message.bot.typing .message-content span:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.message.bot.typing .message-content span:nth-child(2) {
+.typing-dots span:nth-child(2) {
     animation-delay: 0.2s;
 }
 
-.message.bot.typing .message-content span:nth-child(3) {
+.typing-dots span:nth-child(3) {
     animation-delay: 0.4s;
+}
+
+/* Animations */
+@keyframes robotBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes blink {
+    0%, 90%, 100% {
+        transform: scaleY(1);
+    }
+    95% {
+        transform: scaleY(0.1);
+    }
+}
+
+@keyframes lookAround {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-1px);
+    }
+    75% {
+        transform: translateX(1px);
+    }
+}
+
+@keyframes typeLeft {
+    0%, 100% {
+        transform: rotate(-5deg);
+    }
+    50% {
+        transform: rotate(5deg) translateY(2px);
+    }
+}
+
+@keyframes typeRight {
+    0%, 100% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(-5deg) translateY(2px);
+    }
+}
+
+@keyframes handMove {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(3px);
+    }
+}
+
+@keyframes bubbleFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(2deg);
+    }
+}
+
+@keyframes dotPulse {
+    0%, 60%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(1.3);
+        opacity: 0.7;
+    }
 }
 
 /* Stats Section */
