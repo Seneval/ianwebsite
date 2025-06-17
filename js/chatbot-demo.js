@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Bot responses based on keywords
     const responses = {
         precio: [
-            'Nuestros chatbots cuestan $3,000/mes para sitios web y $5,000/mes para e-commerce. Con un ROI promedio del 300% en 6 meses, la inversión se paga sola. ¿Qué tipo de negocio tienes?',
+            'Nuestros chatbots cuestan $3,000/mes para sitios web y $5,000/mes para e-commerce. La inversión se recupera rápidamente con 30-50% más conversiones. ¿Qué tipo de negocio tienes?',
             'La inversión es de $3,000 mensuales (sitios web) o $5,000 (e-commerce). Incluye conversaciones ilimitadas, soporte 24/7 y actualizaciones constantes. ¿Te gustaría ver cómo funcionaría en tu sitio?'
         ],
         costo: [
             'Manejamos dos planes simples: $3,000/mes para sitios web y $5,000/mes para tiendas online. La mayoría de nuestros clientes recuperan la inversión en el primer mes. ¿Cuántos visitantes recibes al mes?',
-            'La inversión depende del tipo de sitio: $3,000/mes (servicios) o $5,000/mes (e-commerce). Considerando que aumentamos las ventas un 87% en promedio, es una inversión muy rentable. ¿Te interesaría una demo personalizada?'
+            'La inversión depende del tipo de sitio: $3,000/mes (servicios) o $5,000/mes (e-commerce). Considerando que aumentamos las ventas 30-50% en promedio, es una inversión muy rentable. ¿Te interesaría una demo personalizada?'
         ],
         tiempo: [
             '¡En solo 3 días tu chatbot estará vendiendo! Día 1: analizamos tu sitio y productos. Día 2: entrenamos la IA con tu información. Día 3: lo integramos y empieza a convertir. ¿Cuándo te gustaría empezar?',
@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
             '¡Excelente decisión! Puedes escribirnos al WhatsApp 811 250 0801 ahora mismo, o si prefieres, deja tus datos en el formulario. Nuestro equipo está listo para aumentar tus ventas. ¿Qué método te resulta más cómodo?'
         ],
         beneficios: [
-            'Los beneficios principales son: ✅ 87% más conversiones ✅ Atención 24/7 sin descanso ✅ 0 frustración (sin menús) ✅ Califica leads automáticamente ✅ ROI del 300%. ¿Cuál te llama más la atención?',
-            'Imagina esto: mientras duermes, tu chatbot está cerrando ventas. Nuestros clientes ven +87% en conversiones, -80% en consultas repetitivas y clientes 95% más satisfechos. ¿Qué problema específico quieres resolver?'
+            'Los beneficios principales son: ✅ 30-50% más conversiones ✅ Atención 24/7 sin descanso ✅ 0 frustración (sin menús) ✅ Califica leads automáticamente ✅ 80% menos tiempo de respuesta. ¿Cuál te llama más la atención?',
+            'Imagina esto: mientras duermes, tu chatbot está cerrando ventas. Nuestros clientes ven 30-50% más conversiones, -80% en consultas repetitivas y clientes 95% más satisfechos. ¿Qué problema específico quieres resolver?'
         ],
         diferencia: [
             'La diferencia es ENORME: otros chatbots frustran con menús tipo "Presiona 1 para...". El nuestro conversa naturalmente, entiende contexto y se enfoca 100% en vender. Es como tener a tu mejor vendedor trabajando 24/7. ¿Has tenido malas experiencias con chatbots?',
@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
             'Tu tienda online necesita esto: el chatbot actúa como personal shopper 24/7, sugiere tallas, informa sobre stock, calcula envíos y cierra ventas automáticamente. ¿Qué plataforma de e-commerce usas?'
         ],
         resultados: [
-            'Los números son impresionantes: 87% más ventas en promedio, ROI del 300% en 6 meses, 80% menos carga en soporte. Un cliente de muebles pasó de 10 a 47 ventas mensuales. ¿Te gustaría ver casos de tu industria?',
-            'Resultados reales: ClienteX aumentó conversiones 134%, ClienteY redujo costo por lead 67%, ClienteZ automatizó 89% de su soporte. Todos recuperaron la inversión en 30 días. ¿Qué métrica es más importante para ti?'
+            'Los números son impresionantes: 30-50% más ventas en promedio, recuperas la inversión rápidamente, 80% menos carga en soporte. Un cliente de muebles pasó de 10 a 35 ventas mensuales. ¿Te gustaría ver casos de tu industria?',
+            'Resultados reales: ClienteX aumentó conversiones 45%, ClienteY redujo costo por lead 67%, ClienteZ automatizó 89% de su soporte. Todos recuperaron la inversión en el primer mes. ¿Qué métrica es más importante para ti?'
         ],
         proceso: [
             'El proceso es simple: 1) Analizamos tu sitio y objetivos, 2) Entrenamos la IA con tu información, 3) Integramos en tu web, 4) ¡Empieza a vender! Todo en 3 días. ¿Tienes alguna pregunta sobre el proceso?',
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'El mejor momento para implementar fue ayer, el segundo mejor es HOY. En 3 días podrías estar vendiendo 24/7. ¿Qué te detiene para empezar ahora mismo?'
         ],
         objeciones: [
-            'Entiendo tu preocupación. ¿Es por el precio? Recuerda que el ROI promedio es 300%. ¿La tecnología? Es tan simple como copiar y pegar. ¿Los resultados? Tenemos garantía de 30 días. ¿Qué te preocupa exactamente?',
+            'Entiendo tu preocupación. ¿Es por el precio? Recuerda que aumentamos conversiones 30-50%. ¿La tecnología? Es tan simple como copiar y pegar. ¿Los resultados? Tenemos garantía de 30 días. ¿Qué te preocupa exactamente?',
             'Las objeciones más comunes: "Es caro" (se paga solo), "Es complicado" (3 días y listo), "No funcionará en mi nicho" (funciona en TODOS). ¿Cuál es tu mayor duda?'
         ],
         servicios: [
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         default: [
             'Excelente pregunta. Soy un ejemplo de cómo tu negocio podría estar vendiendo 24/7. ¿Te gustaría saber sobre precios, ver resultados reales o agendar una demo personalizada?',
-            'Gracias por tu interés. Puedo explicarte cómo aumentar tus ventas 87%, mostrarte casos de éxito o ayudarte a calcular tu ROI. ¿Qué información te sería más útil?',
+            'Gracias por tu interés. Puedo explicarte cómo aumentar tus ventas 30-50%, mostrarte casos de éxito o resolver cualquier duda. ¿Qué información te sería más útil?',
             'Interesante punto. Como chatbot de iAN, puedo conversar naturalmente sobre cualquier tema. ¿Prefieres que te cuente sobre beneficios, proceso de implementación o casos de tu industria?'
         ]
     };
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (lowerInput.includes('hola') || lowerInput.includes('hi') || lowerInput.includes('buenos') || lowerInput.includes('buen dia')) {
-            return '¡Hola! 👋 Soy un chatbot de iAN, especializado en convertir visitantes en clientes. Puedo ayudarte a entender cómo aumentar tus ventas 87% con IA conversacional. ¿Qué te gustaría saber?';
+            return '¡Hola! 👋 Soy un chatbot de iAN, especializado en convertir visitantes en clientes. Puedo ayudarte a entender cómo aumentar tus ventas 30-50% con IA conversacional. ¿Qué te gustaría saber?';
         }
         
         if (lowerInput.includes('gracias') || lowerInput.includes('perfecto') || lowerInput.includes('genial')) {
