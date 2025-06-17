@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             '¡Excelente decisión! Puedes escribirnos al WhatsApp 811 250 0801 ahora mismo, o si prefieres, deja tus datos en el formulario. Nuestro equipo está listo para aumentar tus ventas. ¿Qué método te resulta más cómodo?'
         ],
         beneficios: [
-            'Los beneficios principales son: ✅ 30-50% más conversiones ✅ Atención 24/7 sin descanso ✅ 0 frustración (sin menús) ✅ Califica leads automáticamente ✅ 80% menos tiempo de respuesta. ¿Cuál te llama más la atención?',
+            'Los beneficios principales son: ✅ 30-50% más conversiones ✅ Atención 24/7 sin descanso ✅ 0 frustración (sin menús) ✅ Califica leads automáticamente ✅ 100% de visitantes atendidos. ¿Cuál te llama más la atención?',
             'Imagina esto: mientras duermes, tu chatbot está cerrando ventas. Nuestros clientes ven 30-50% más conversiones, -80% en consultas repetitivas y clientes 95% más satisfechos. ¿Qué problema específico quieres resolver?'
         ],
         diferencia: [
