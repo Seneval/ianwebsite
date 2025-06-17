@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!chatMessages || !userInput || !sendButton) return;
 
+    // Conversation state
+    let lastUserMessageTime = Date.now();
+    let conversationActive = false;
+    let inactivityTimer = null;
+
     // Bot responses based on keywords
     const responses = {
         precio: [
@@ -134,6 +139,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const message = userInput.value.trim();
         if (!message) return;
         
+        // Update conversation state
+        lastUserMessageTime = Date.now();
+        conversationActive = true;
+        
+        // Clear any inactivity timer
+        if (inactivityTimer) {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = null;
+        }
+        
         // Add user message
         addMessage(message, true);
         
@@ -144,17 +159,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const response = getBotResponse(message);
         addMessage(response);
         
-        // Add follow-up suggestion after some responses
-        if (Math.random() > 0.5) {
-            setTimeout(() => {
-                const suggestions = [
-                    '¿Te gustaría agendar una demo gratuita?',
-                    '¿Quieres ver casos de éxito de otros clientes?',
-                    '¿Te interesa saber más sobre el proceso de implementación?'
+        // Set inactivity timer for suggestions (30 seconds)
+        inactivityTimer = setTimeout(() => {
+            if (conversationActive) {
+                const inactivitySuggestions = [
+                    '💡 Si tienes más preguntas, no dudes en escribirme.',
+                    '🤔 ¿Hay algo más en lo que pueda ayudarte?',
+                    '✨ Recuerda que puedes contactarnos al 811 250 0801 para una atención personalizada.'
                 ];
-                addMessage(suggestions[Math.floor(Math.random() * suggestions.length)]);
-            }, 3000);
-        }
+                addMessage(inactivitySuggestions[Math.floor(Math.random() * inactivitySuggestions.length)]);
+                conversationActive = false;
+            }
+        }, 30000); // 30 seconds
     }
 
     // Event listeners
@@ -194,62 +210,58 @@ document.addEventListener('DOMContentLoaded', function() {
         'Beneficios principales'
     ];
 
-    // Add quick reply buttons occasionally
-    let messageCount = 0;
-    const originalAddMessage = addMessage;
-    addMessage = function(text, isUser = false) {
-        originalAddMessage(text, isUser);
+    // Add quick reply buttons only for initial message or after inactivity
+    function showQuickReplies() {
+        const quickReplyDiv = document.createElement('div');
+        quickReplyDiv.className = 'quick-replies fade-in';
+        quickReplyDiv.style.cssText = `
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        `;
         
-        if (!isUser) {
-            messageCount++;
-            if (messageCount % 3 === 0) {
-                setTimeout(() => {
-                    const quickReplyDiv = document.createElement('div');
-                    quickReplyDiv.className = 'quick-replies fade-in';
-                    quickReplyDiv.style.cssText = `
-                        display: flex;
-                        gap: 10px;
-                        margin: 15px 0;
-                        flex-wrap: wrap;
-                    `;
-                    
-                    quickReplies.forEach(reply => {
-                        const button = document.createElement('button');
-                        button.textContent = reply;
-                        button.style.cssText = `
-                            padding: 8px 16px;
-                            border: 2px solid var(--primary-purple);
-                            background: transparent;
-                            color: var(--primary-purple);
-                            border-radius: 20px;
-                            cursor: pointer;
-                            font-size: 14px;
-                            transition: all 0.3s ease;
-                        `;
-                        
-                        button.addEventListener('mouseenter', () => {
-                            button.style.background = 'var(--primary-purple)';
-                            button.style.color = 'white';
-                        });
-                        
-                        button.addEventListener('mouseleave', () => {
-                            button.style.background = 'transparent';
-                            button.style.color = 'var(--primary-purple)';
-                        });
-                        
-                        button.addEventListener('click', () => {
-                            userInput.value = reply;
-                            sendMessage();
-                            quickReplyDiv.remove();
-                        });
-                        
-                        quickReplyDiv.appendChild(button);
-                    });
-                    
-                    chatMessages.appendChild(quickReplyDiv);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 2000);
-            }
+        quickReplies.forEach(reply => {
+            const button = document.createElement('button');
+            button.textContent = reply;
+            button.style.cssText = `
+                padding: 8px 16px;
+                border: 2px solid var(--primary-purple);
+                background: transparent;
+                color: var(--primary-purple);
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: all 0.3s ease;
+            `;
+            
+            button.addEventListener('mouseenter', () => {
+                button.style.background = 'var(--primary-purple)';
+                button.style.color = 'white';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.background = 'transparent';
+                button.style.color = 'var(--primary-purple)';
+            });
+            
+            button.addEventListener('click', () => {
+                userInput.value = reply;
+                sendMessage();
+                quickReplyDiv.remove();
+            });
+            
+            quickReplyDiv.appendChild(button);
+        });
+        
+        chatMessages.appendChild(quickReplyDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // Show quick replies after initial message
+    setTimeout(() => {
+        if (!conversationActive) {
+            showQuickReplies();
         }
-    };
+    }, 2000);
 });
