@@ -1,15 +1,54 @@
 // Main JavaScript file
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
+    // Mobile menu functionality
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
     const navMenu = document.querySelector('.nav-menu');
+    const body = document.body;
     
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'mobile-menu-overlay';
+    body.appendChild(overlay);
+    
+    // Toggle mobile menu
     if (mobileMenuToggle) {
         mobileMenuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            mobileMenu?.classList.toggle('active');
+            overlay.classList.toggle('active');
+            body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
             this.classList.toggle('active');
         });
     }
+    
+    // Close menu on overlay click
+    overlay.addEventListener('click', function() {
+        mobileMenu?.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = '';
+        mobileMenuToggle?.classList.remove('active');
+    });
+    
+    // Mobile dropdown functionality
+    const mobileDropdowns = document.querySelectorAll('.mobile-dropdown .dropdown-toggle');
+    mobileDropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parent = this.closest('.mobile-dropdown');
+            parent?.classList.toggle('active');
+        });
+    });
+    
+    // Close mobile menu on link click
+    const mobileLinks = document.querySelectorAll('.mobile-link:not(.dropdown-toggle)');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu?.classList.remove('active');
+            overlay.classList.remove('active');
+            body.style.overflow = '';
+            mobileMenuToggle?.classList.remove('active');
+        });
+    });
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -22,8 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     block: 'start'
                 });
                 // Close mobile menu if open
-                navMenu.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
+                navMenu?.classList.remove('active');
+                mobileMenu?.classList.remove('active');
+                overlay?.classList.remove('active');
+                body.style.overflow = '';
+                mobileMenuToggle?.classList.remove('active');
             }
         });
     });
