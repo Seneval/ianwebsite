@@ -13,20 +13,56 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
     
-    // Animate browser URL on scroll
+    // Typewriter effect for browser URL
     const browserUrl = document.querySelector('.browser-url');
     const urlExamples = ['tusitio.com', 'tutienda.com', 'tuservicio.com', 'tunegocio.com'];
     let urlIndex = 0;
     
     if (browserUrl) {
+        // Initial typing
+        typewriterEffect(browserUrl, urlExamples[0]);
+        
+        // Change URL every 5 seconds
         setInterval(() => {
-            browserUrl.style.opacity = '0';
-            setTimeout(() => {
-                browserUrl.textContent = urlExamples[urlIndex];
-                browserUrl.style.opacity = '1';
-                urlIndex = (urlIndex + 1) % urlExamples.length;
-            }, 300);
-        }, 4000);
+            urlIndex = (urlIndex + 1) % urlExamples.length;
+            
+            // First erase current text
+            eraseText(browserUrl, () => {
+                // Then type new text
+                typewriterEffect(browserUrl, urlExamples[urlIndex]);
+            });
+        }, 5000);
+    }
+    
+    // Typewriter function
+    function typewriterEffect(element, text) {
+        element.textContent = '';
+        let charIndex = 0;
+        
+        const typeInterval = setInterval(() => {
+            if (charIndex < text.length) {
+                element.textContent += text.charAt(charIndex);
+                charIndex++;
+            } else {
+                clearInterval(typeInterval);
+            }
+        }, 100); // Speed of typing
+    }
+    
+    // Erase text function
+    function eraseText(element, callback) {
+        let text = element.textContent;
+        let charIndex = text.length;
+        
+        const eraseInterval = setInterval(() => {
+            if (charIndex > 0) {
+                element.textContent = text.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                clearInterval(eraseInterval);
+                if (callback) callback();
+            }
+        }, 50); // Speed of erasing (faster than typing)
     }
     
     // Parallax effect for hero elements
