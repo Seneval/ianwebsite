@@ -1536,14 +1536,24 @@ section {
     }
     
     .benefit-card {
-        text-align: center;
+        text-align: center !important;
     }
     
     .benefit-card h3 {
-        text-align: center;
+        text-align: center !important;
+        width: 100%;
+    }
+    
+    .benefit-card p {
+        text-align: center !important;
     }
     
     .benefit-icon {
+        margin: 0 auto !important;
+        display: block;
+    }
+    
+    .icon-wrapper {
         margin: 0 auto;
     }
     
