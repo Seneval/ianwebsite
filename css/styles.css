@@ -692,6 +692,18 @@ section {
     color: inherit;
 }
 
+.message-content a {
+    color: var(--primary-purple);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--primary-purple);
+    transition: opacity var(--transition-fast);
+}
+
+.message-content a:hover {
+    opacity: 0.8;
+}
+
 .chat-input {
     display: flex;
     padding: 1rem;

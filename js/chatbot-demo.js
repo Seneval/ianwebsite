@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Process the text to handle line breaks and formatting
                 const formattedText = text
                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert **text** to bold
+                    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>') // Convert [text](url) to links
+                    .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>') // Convert plain URLs to links
                     .replace(/\n/g, '<br>') // Convert line breaks
                     .trim();
                 
