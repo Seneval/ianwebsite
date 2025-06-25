@@ -58,12 +58,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Replace with actual message after delay
             setTimeout(() => {
                 // Process the text to handle line breaks and formatting
-                const formattedText = text
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert **text** to bold
-                    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>') // Convert [text](url) to links
-                    .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>') // Convert plain URLs to links
-                    .replace(/\n/g, '<br>') // Convert line breaks
-                    .trim();
+                let formattedText = text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Convert **text** to bold
+                
+                // First replace markdown links
+                formattedText = formattedText.replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+                
+                // Then replace plain URLs (but not those already in <a> tags)
+                formattedText = formattedText.replace(/(^|[^"])(https?:\/\/[^\s<]+)(?![^<]*<\/a>)/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
+                
+                // Finally convert line breaks
+                formattedText = formattedText.replace(/\n/g, '<br>').trim();
                 
                 messageDiv.innerHTML = `
                     <div class="message-content">
@@ -189,8 +194,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // Add initial greeting message
-    setTimeout(() => {
-        addMessage('¡Hola! 👋 Soy un chatbot inteligente de iAN. Puedo ayudarte a entender cómo nuestros chatbots pueden aumentar tus ventas 30-50%. ¿En qué puedo ayudarte hoy?');
-    }, 1000);
+    // Remove initial greeting - bot will respond when user says hello
 });
