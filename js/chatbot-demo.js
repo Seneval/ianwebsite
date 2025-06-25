@@ -57,8 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Replace with actual message after delay
             setTimeout(() => {
-                // Process the text to handle line breaks
-                const formattedText = text.replace(/\n/g, '<br>');
+                // Process the text to handle line breaks and formatting
+                const formattedText = text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert **text** to bold
+                    .replace(/\n/g, '<br>') // Convert line breaks
+                    .trim();
                 
                 messageDiv.innerHTML = `
                     <div class="message-content">

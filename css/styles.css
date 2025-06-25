@@ -687,6 +687,11 @@ section {
     margin-left: auto;
 }
 
+.message-content strong {
+    font-weight: 600;
+    color: inherit;
+}
+
 .chat-input {
     display: flex;
     padding: 1rem;
