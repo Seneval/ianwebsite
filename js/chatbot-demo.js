@@ -57,9 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Replace with actual message after delay
             setTimeout(() => {
+                // Process the text to handle line breaks
+                const formattedText = text.replace(/\n/g, '<br>');
+                
                 messageDiv.innerHTML = `
                     <div class="message-content">
-                        ${text}
+                        ${formattedText}
                     </div>
                 `;
                 messageDiv.classList.add('fade-in');
