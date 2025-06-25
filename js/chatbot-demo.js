@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Configuration
     const API_ENDPOINT = window.location.hostname === 'localhost' 
         ? 'http://localhost:3000/api/chat'  // For local development
-        : 'https://ian-chatbot-api.vercel.app/api/chat'; // Your Vercel deployment URL
+        : 'https://ianwebsite.vercel.app/api/chat'; // Your Vercel deployment URL
 
     // Conversation state
     let conversationHistory = [];
