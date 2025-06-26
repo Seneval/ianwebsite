@@ -55,7 +55,8 @@ app.use('/api/auth', authRoutes);
 
 // Widget serving
 app.get('/widget.js', (req, res) => {
-  res.sendFile('widget.min.js', { root: '../widget/build' });
+  const path = require('path');
+  res.sendFile(path.join(__dirname, '../../widget/build/widget.js'));
 });
 
 // Error handling middleware
