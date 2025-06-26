@@ -23,9 +23,24 @@ const corsOptions = {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
-    // In production, validate against allowed domains
-    // For now, allow all origins in development
-    callback(null, true);
+    // Allowed origins
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'https://ianwebsite.vercel.app',
+      'https://ianwebsite-git-dev-patricios-projects-fbd72f4d.vercel.app',
+      'https://ian-chatbot-backend.vercel.app',
+      /^https:\/\/.*\.vercel\.app$/  // Allow all Vercel preview deployments
+    ];
+    
+    const isAllowed = allowedOrigins.some(allowed => {
+      if (allowed instanceof RegExp) {
+        return allowed.test(origin);
+      }
+      return allowed === origin;
+    });
+    
+    callback(null, isAllowed);
   },
   credentials: true
 };

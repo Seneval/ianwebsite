@@ -2,7 +2,7 @@
 const AUTH_TOKEN_KEY = 'ian_admin_token';
 const API_BASE_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:3000/api' 
-    : '/api';
+    : 'https://ian-chatbot-backend.vercel.app/api';
 
 // Check if already logged in
 document.addEventListener('DOMContentLoaded', () => {
