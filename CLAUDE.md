@@ -170,8 +170,34 @@ git push origin main:gh-pages --force
 - Digital Prospecting: $8,000 - $12,000/month MXN
 - AI Courses: $3,990 - $12,990 MXN
 
+## Admin Dashboard
+
+### Access
+- URL: `/admin/` (e.g., http://localhost:3000/admin/)
+- Default credentials: username: `admin`, password: `admin123`
+
+### Features
+- **Client Management**: Add, edit, delete clients
+- **Widget Code Generation**: Instant widget code for clients
+- **Usage Tracking**: Monitor messages and sessions per client
+- **Token Management**: Regenerate client tokens
+- **Payment Notes**: Track payment status in notes field
+
+### Dashboard Structure
+```
+/admin/
+├── index.html          # Login page
+├── dashboard.html      # Main dashboard
+├── css/admin.css       # Styles
+└── js/
+    ├── auth.js         # Authentication logic
+    ├── api.js          # API wrapper
+    └── dashboard.js    # Dashboard functionality
+```
+
 ## Important Notes
 - The web development service offers traditional websites only (no AI features)
 - Case studies currently use placeholder examples
 - Backend designed for Vercel deployment
 - Rate limiting: 30 requests/minute per IP
+- Admin dashboard currently uses in-memory storage (MongoDB integration pending)
