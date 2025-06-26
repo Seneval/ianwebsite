@@ -243,12 +243,11 @@
             </div>
 
             <div class="form-group">
-                <label for="apiKey">OpenAI API Key (Opcional para demo)</label>
-                <input 
-                    type="password" 
-                    id="apiKey" 
-                    placeholder="sk-..."
-                >
+                <label for="demoMode">Modo Demo (sin OpenAI API)</label>
+                <select id="demoMode">
+                    <option value="true">Sí - Usar respuestas demo</option>
+                    <option value="false">No - Usar OpenAI real</option>
+                </select>
             </div>
 
             <div class="button-group">
@@ -352,46 +351,8 @@
                 return;
             }
 
-            // Create a test page with the widget
-            const testHTML = `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Test Chat</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 40px;
-            background: #f5f5f5;
-        }
-        h1 { color: #333; }
-        p { color: #666; line-height: 1.6; }
-    </style>
-</head>
-<body>
-    <h1>Página de Prueba - iAN Chatbot</h1>
-    <p>Este es un sitio de ejemplo. El chatbot aparecerá en la esquina inferior derecha.</p>
-    <p>Token actual: ${token.substring(0, 20)}...</p>
-    
-    <!-- iAN Chatbot Widget -->
-    <script>
-        window.CHATBOT_API_URL = '${API_URL}';
-        (function() {
-            var script = document.createElement('script');
-            script.src = '../widget/build/widget.js';
-            script.setAttribute('data-client-token', '${token}');
-            script.setAttribute('data-position', 'bottom-right');
-            script.async = true;
-            document.head.appendChild(script);
-        })();
-    </script>
-</body>
-</html>`;
-
-            // Create blob and open in new window
-            const blob = new Blob([testHTML], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            window.open(url, '_blank');
+            // Redirect to test page with token
+            window.location.href = `http://localhost:3000/test-chat?token=${encodeURIComponent(token)}`;
         }
 
         // Check if there's a stored token

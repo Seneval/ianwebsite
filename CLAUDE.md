@@ -4,23 +4,159 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-iAN (Inteligencia Artificial para Negocios) is a static website for a business offering AI-powered services, specifically:
-- AI Chatbots for businesses
+iAN (Inteligencia Artificial para Negocios) is a multi-component project consisting of:
+1. A static marketing website (deployed via GitHub Pages)
+2. A Node.js backend API for AI chatbot services
+3. A JavaScript widget for embedding chatbots on client websites
+
+### Services Offered
+- AI Chatbots for businesses (powered by OpenAI Assistants API)
 - Digital prospecting with AI (Facebook Ads, Instagram Ads, Google Ads)
 - Traditional web development services
 - AI courses
 
-The site is deployed using GitHub Pages at inteligenciaartificialparanegocios.com.
+## Project Structure
 
-## Development Environment
+```
+/
+├── index.html              # Main static website files
+├── desarrollo-web.html
+├── prospeccion-ia.html
+├── cursos-ia.html
+├── backend/               # Node.js backend API
+│   ├── src/
+│   │   ├── api/          # API routes
+│   │   └── middleware/   # Auth middleware
+│   └── package.json
+└── widget/               # Embeddable chat widget
+    ├── src/
+    └── build/
+```
 
-This is a static HTML/CSS/JavaScript website with no build process or dependencies. Development is done directly on the HTML, CSS, and JavaScript files.
+## Development Commands
 
-### Running Locally
-Simply open `index.html` in a web browser. Note that links use relative paths (e.g., `desarrollo-web.html` instead of `/desarrollo-web.html`) to work locally.
+### Backend Development
+```bash
+cd backend
+npm install              # Install dependencies
+npm run dev             # Run with hot-reload (uses nodemon)
+npm start               # Run in production mode
+```
+
+### Widget Development
+```bash
+cd widget
+npm install             # Install dependencies
+npm run build           # Build widget
+npm run watch           # Watch and rebuild on changes
+```
+
+### Frontend (Static Site)
+No build process required. Open `index.html` directly in a browser.
+
+## Backend Architecture
+
+### Technology Stack
+- Node.js >= 18.0.0
+- Express.js
+- OpenAI SDK v5.7.0
+- JWT for authentication
+- MongoDB (planned, currently in-memory)
+
+### Key API Endpoints
+- `/api/auth/*` - Client and admin authentication
+- `/api/chat/*` - Chat session management and messaging
+- `/api/analytics/*` - Usage analytics and insights
+- `/test-assistant` - Test page for OpenAI integration
+- `/demo.html` - Chat widget demo page
+
+### Environment Configuration
+Create a `.env` file in the backend directory:
+```
+OPENAI_API_KEY=your_openai_api_key_here
+JWT_SECRET=your_jwt_secret
+ADMIN_JWT_SECRET=your_admin_jwt_secret
+PORT=3000
+```
+
+## Critical OpenAI Assistant API Integration
+
+### IMPORTANT: Correct API Call Format
+When using the OpenAI SDK v5.7.0 to retrieve run status, the correct format is:
+
+```javascript
+// CORRECT - thread_id must be passed in params object
+const runStatus = await openai.beta.threads.runs.retrieve(runId, { thread_id: threadId });
+
+// INCORRECT - These will fail with "Invalid 'thread_id': 'undefined'"
+const runStatus = await openai.beta.threads.runs.retrieve(threadId, runId);
+const runStatus = await openai.beta.threads.runs.retrieve(runId);
+```
+
+### Assistant Flow
+1. Create a thread: `openai.beta.threads.create()`
+2. Add message to thread: `openai.beta.threads.messages.create(threadId, {...})`
+3. Create run: `openai.beta.threads.runs.create(threadId, { assistant_id })`
+4. Poll for completion: `openai.beta.threads.runs.retrieve(runId, { thread_id: threadId })`
+5. Retrieve messages: `openai.beta.threads.messages.list(threadId)`
+
+## Widget Integration
+
+### Embedding the Widget
+```html
+<script>
+  window.CHATBOT_API_URL = 'http://localhost:3000/api'; // or production URL
+  window.CHATBOT_DEMO_MODE = false; // Set to true for demo mode
+  
+  (function() {
+    var script = document.createElement('script');
+    script.src = '/widget.js'; // or full URL in production
+    script.setAttribute('data-client-token', 'YOUR_CLIENT_TOKEN');
+    script.setAttribute('data-position', 'bottom-right');
+    script.async = true;
+    document.head.appendChild(script);
+  })();
+</script>
+```
+
+### Widget Build Process
+The widget is built using Terser for minification. Source files in `widget/src/` are combined and minified to `widget/build/widget.js` and `widget/build/widget.min.js`.
+
+## Authentication System
+
+### Multi-Tenant Architecture
+- Each client gets a unique JWT token
+- Tokens include `clientId` and `assistantId`
+- Middleware validates tokens for all chat endpoints
+
+### Token Structure
+```javascript
+{
+  clientId: "uuid",
+  businessName: "Client Name",
+  assistantId: "asst_xxxxx", // OpenAI Assistant ID
+  iat: timestamp,
+  exp: timestamp
+}
+```
+
+## Frontend (Static Site)
+
+### CSS Variables
+```css
+--primary: #4F46E5 (Indigo)
+--secondary: #7C3AED (Purple)
+--white: #FFFFFF
+--gray-900: #111827
+```
+
+### Key Integrations
+- Web3Forms API for contact forms (access key: `cdc4bf5e-a398-4dbd-8f38-b6628968434a`)
+- Intersection Observer for scroll animations
+- Mobile-first responsive design (breakpoints: 768px, 1024px)
 
 ### Deployment
-The site is deployed automatically via GitHub Pages:
+GitHub Pages deployment:
 ```bash
 git add .
 git commit -m "Your commit message"
@@ -28,52 +164,14 @@ git push origin main
 git push origin main:gh-pages --force
 ```
 
-## Architecture
+## Service Pricing
+- Chatbots: $29,000 - $89,000 MXN
+- Web Development: $8,500 - $35,000 MXN
+- Digital Prospecting: $8,000 - $12,000/month MXN
+- AI Courses: $3,990 - $12,990 MXN
 
-### Page Structure
-- `index.html` - Main landing page for AI chatbot services
-- `desarrollo-web.html` - Web development services page
-- `prospeccion-ia.html` - Digital prospecting with AI services
-- `cursos-ia.html` - AI courses page
-
-### Component Organization
-- `css/styles.css` - Main stylesheet with CSS variables and responsive design
-- `css/animations.css` - Animation utilities
-- `js/main.js` - Core functionality (navigation, mobile menu, form handling)
-- `js/*-animations.js` - Page-specific animations
-- `components/whatsapp-button.js` - WhatsApp floating button component
-
-### Key Technical Details
-
-1. **Form Integration**: All forms use Web3Forms API with the access key: `cdc4bf5e-a398-4dbd-8f38-b6628968434a`
-
-2. **Navigation Structure**: 
-   - Desktop: Dropdown menu under "Otros Servicios"
-   - Mobile: Hamburger menu with slide-in navigation
-
-3. **CSS Variables**:
-   ```css
-   --primary: #4F46E5 (Indigo)
-   --secondary: #7C3AED (Purple)
-   --white: #FFFFFF
-   --gray-900: #111827
-   ```
-
-4. **Animation Patterns**: 
-   - Uses Intersection Observer for scroll animations
-   - CSS transitions for hover states
-   - JavaScript-driven metric animations
-
-## Important Considerations
-
-1. **No AI in Web Development**: The web development service offers traditional websites only - no AI features or personalization.
-
-2. **Service Pricing**:
-   - Chatbots: $29,000 - $89,000 MXN
-   - Web Development: $8,500 - $35,000 MXN
-   - Digital Prospecting: $8,000 - $12,000/month MXN
-   - AI Courses: $3,990 - $12,990 MXN
-
-3. **Case Studies**: Currently uses placeholder examples (Inmobiliaria, Eventos, Maquinaria Industrial)
-
-4. **Mobile-First Design**: All styles prioritize mobile responsiveness with breakpoints at 768px and 1024px.
+## Important Notes
+- The web development service offers traditional websites only (no AI features)
+- Case studies currently use placeholder examples
+- Backend designed for Vercel deployment
+- Rate limiting: 30 requests/minute per IP
