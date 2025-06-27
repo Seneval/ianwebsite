@@ -329,7 +329,7 @@ async function viewWidgetCode(clientId) {
 <script>
   (function() {
     var script = document.createElement('script');
-    script.src = 'https://ian-chatbot-backend.vercel.app/widget.js';
+    script.src = 'https://ian-chatbot-backend-h6zr.vercel.app/widget.js';
     script.setAttribute('data-client-token', '${client.token}');
     script.setAttribute('data-position', 'bottom-right');
     script.async = true;

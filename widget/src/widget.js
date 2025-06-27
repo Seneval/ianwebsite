@@ -1,7 +1,7 @@
 (function() {
   // Widget configuration
   const config = {
-    apiUrl: window.CHATBOT_API_URL || 'http://localhost:3000/api',
+    apiUrl: window.CHATBOT_API_URL || 'https://ian-chatbot-backend-h6zr.vercel.app/api',
     token: null,
     position: 'bottom-right',
     primaryColor: '#4F46E5',
