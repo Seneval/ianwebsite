@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // If on dashboard and no token, redirect to login
     if (!token && window.location.pathname.includes('dashboard.html')) {
-        window.location.href = '/admin/index.html';
+        window.location.href = 'index.html';
     }
     
     // Setup login form handler
@@ -35,7 +35,7 @@ async function verifyTokenAndRedirect(token) {
         });
         
         if (response.ok) {
-            window.location.href = '/admin/dashboard.html';
+            window.location.href = 'dashboard.html';
         } else {
             localStorage.removeItem(AUTH_TOKEN_KEY);
         }
@@ -87,7 +87,7 @@ async function handleLogin(e) {
             
             // Redirect to dashboard
             setTimeout(() => {
-                window.location.href = '/admin/dashboard.html';
+                window.location.href = 'dashboard.html';
             }, 500);
         } else {
             throw new Error(data.error || 'Error al iniciar sesión');
@@ -108,7 +108,7 @@ async function handleLogin(e) {
 function logout() {
     localStorage.removeItem(AUTH_TOKEN_KEY);
     sessionStorage.removeItem(AUTH_TOKEN_KEY);
-    window.location.href = '/admin/index.html';
+    window.location.href = 'index.html';
 }
 
 // Get stored token
@@ -121,7 +121,7 @@ const authenticatedFetch = (url, options = {}) => {
     const token = getToken();
     
     if (!token) {
-        window.location.href = '/admin/index.html';
+        window.location.href = 'index.html';
         return Promise.reject(new Error('No token found'));
     }
     
