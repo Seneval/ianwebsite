@@ -256,6 +256,8 @@ async function editClient(clientId) {
     document.getElementById('assistantId').value = client.assistantId;
     document.getElementById('monthlyMessageLimit').value = client.monthlyMessageLimit || 1000;
     document.getElementById('notes').value = client.notes || '';
+    document.getElementById('widgetTitle').value = client.widgetTitle || 'Asistente Virtual';
+    document.getElementById('widgetGreeting').value = client.widgetGreeting || '¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?';
     
     openModal('clientModal');
 }
@@ -282,7 +284,9 @@ async function handleClientSubmit(e) {
         plan: document.getElementById('plan').value,
         assistantId: document.getElementById('assistantId').value,
         monthlyMessageLimit: parseInt(document.getElementById('monthlyMessageLimit').value),
-        notes: document.getElementById('notes').value
+        notes: document.getElementById('notes').value,
+        widgetTitle: document.getElementById('widgetTitle').value || 'Asistente Virtual',
+        widgetGreeting: document.getElementById('widgetGreeting').value || '¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?'
     };
     
     try {

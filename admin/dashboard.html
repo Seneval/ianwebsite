@@ -188,6 +188,28 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="widgetTitle">Título del Widget</label>
+                        <input 
+                            type="text" 
+                            id="widgetTitle" 
+                            name="widgetTitle"
+                            placeholder="Ej: Asistente Virtual"
+                        >
+                        <p class="info-text">El título que aparecerá en la barra superior del chat</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="widgetGreeting">Saludo del Widget</label>
+                        <textarea 
+                            id="widgetGreeting" 
+                            name="widgetGreeting"
+                            rows="3"
+                            placeholder="Ej: ¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?"
+                        ></textarea>
+                        <p class="info-text">El mensaje de bienvenida que verán los usuarios</p>
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="monthlyMessageLimit">Límite Mensual de Mensajes</label>
                         <input 
                             type="number" 
