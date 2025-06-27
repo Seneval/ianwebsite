@@ -6,8 +6,9 @@ let currentWidgetCode = '';
 // Initialize dashboard when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Check authentication
-    if (!adminAuth.getToken()) {
-        window.location.href = '/admin/index.html';
+    if (typeof adminAuth === 'undefined' || !adminAuth.getToken()) {
+        console.error('Auth not loaded or no token found');
+        window.location.href = 'index.html';
         return;
     }
     
