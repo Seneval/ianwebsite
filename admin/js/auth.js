@@ -6,7 +6,7 @@ const API_BASE_URL = window.location.hostname === 'localhost'
 
 // Check if already logged in
 document.addEventListener('DOMContentLoaded', () => {
-    const token = localStorage.getItem(AUTH_TOKEN_KEY);
+    const token = localStorage.getItem(AUTH_TOKEN_KEY) || sessionStorage.getItem(AUTH_TOKEN_KEY);
     
     // If on login page and has token, redirect to dashboard
     if (token && window.location.pathname.includes('index.html')) {
