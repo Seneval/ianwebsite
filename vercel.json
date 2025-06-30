@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/admin",
+      "destination": "https://ian-chatbot-backend-h6zr.vercel.app/admin"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://ian-chatbot-backend-h6zr.vercel.app/admin/:path*"
+    }
+  ]
+}
