@@ -14,6 +14,32 @@
     
     <link rel="stylesheet" href="css/styles.css?v=2.1">
     <link rel="stylesheet" href="css/animations.css?v=2.1">
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1524862583485702');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+        content_name: 'Prospección IA',
+        content_category: 'prospection_service',
+        content_ids: ['prospeccion_ia'],
+        value: 8000,
+        currency: 'MXN'
+    });
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1524862583485702&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
 </head>
 <body>
     <!-- Navigation -->
@@ -672,5 +698,6 @@
 
     <script src="js/main.js"></script>
     <script src="js/prospeccion-animations.js"></script>
+    <script src="js/facebook-events.js"></script>
 </body>
 </html>
