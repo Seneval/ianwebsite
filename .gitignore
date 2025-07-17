@@ -60,3 +60,6 @@ typings/
 .idea/
 *.swp
 *.swo
+# Google Cloud Service Account Credentials
+*.json
+gen-lang-client-*
