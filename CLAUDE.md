@@ -195,9 +195,115 @@ git push origin main:gh-pages --force
     └── dashboard.js    # Dashboard functionality
 ```
 
+## Facebook Pixel Implementation
+
+### Current Setup
+- **Pixel ID**: `1524862538485702` (iAN Mexico)
+- **Domain Verification**: Meta tag added to all pages
+- **Comprehensive Tracking**: `/js/facebook-events.js` handles all events
+
+### Standard Events Configured
+- **Lead**: Form completions with service-specific values
+- **Contact**: WhatsApp/phone clicks with contact type
+- **InitiateCheckout**: Form interactions and service interest
+- **ViewContent**: Page views with service categorization
+
+### Custom Events
+- **WhatsAppClick**: Message type detection and tracking
+- **CTAClick**: Button interactions across all pages
+- **FormStart**: First input focus tracking
+- **ServiceInterest**: 30-second page engagement
+- **ScrollDepth**: 25%, 50%, 75%, 100% tracking
+
+### Auto-Detection Features
+```javascript
+// Service type by URL detection
+// Automatic event binding to forms, buttons, links
+// Rate limiting to prevent duplicate events
+// Value attribution by service type ($8K-$89K MXN)
+```
+
+## Google Search Console Integration
+
+### MCP Server Configuration
+- **Service Account**: `gsc-mcp-ian@gen-lang-client-0982248781.iam.gserviceaccount.com`
+- **Credentials File**: `gen-lang-client-*.json` (local only, in .gitignore)
+- **Permissions**: Full access to `sc-domain:inteligenciaartificialparanegocios.com`
+
+### Available MCP Tools
+```bash
+# List configured sites
+mcp__gsc__list_sites
+
+# Get search analytics data
+mcp__gsc__search_analytics --siteUrl="sc-domain:domain.com" --startDate="2025-07-01" --endDate="2025-07-17"
+
+# Inspect URL indexation status
+mcp__gsc__index_inspect --siteUrl="sc-domain:domain.com" --inspectionUrl="https://domain.com/page.html"
+
+# Submit sitemaps
+mcp__gsc__submit_sitemap --siteUrl="sc-domain:domain.com" --feedpath="https://domain.com/sitemap.xml"
+```
+
+### SEO Status (Last Updated: July 2025)
+- **4 main pages indexed** (homepage, services pages)
+- **Complete SEO optimization** applied (meta tags, structured data, internal linking)
+- **Keywords targeted**: "chatbots IA mexico", "prospección IA", "desarrollo web mexico"
+- **Automatic monitoring**: 24/7 search performance tracking available
+
+## Dual Backend Architecture
+
+### Main Backend (`/backend/`)
+- **Full-featured**: Admin panel, MongoDB, analytics
+- **OpenAI SDK**: v5.7.0 with complete Assistants API
+- **Authentication**: Dual JWT system (client + admin)
+- **Database**: MongoDB with Mongoose models (Client, Session, Message)
+
+### Simple API (`/api/`)
+- **Lightweight**: Vercel serverless function
+- **OpenAI SDK**: v4.56.0 with chat completions only
+- **Model**: GPT-4o-mini for cost efficiency
+- **Use Case**: Basic chat without admin features
+
+### API Development Commands
+```bash
+cd api
+npm run dev          # Start Vercel dev server
+npm run deploy       # Deploy to Vercel
+```
+
+## MongoDB Integration
+
+### Environment Variables Required
+```
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
+OPENAI_API_KEY=sk-...
+JWT_SECRET=your_jwt_secret
+ADMIN_JWT_SECRET=your_admin_jwt_secret
+```
+
+### Data Models
+- **Client**: Business info, assistant ID, payment status, message limits
+- **Session**: Chat session tracking with analytics
+- **Message**: Conversation history with performance metrics
+
+## Security & Deployment
+
+### Credentials Management
+- **Google Cloud credentials**: Local only, excluded from git
+- **API keys**: Environment variables only
+- **JWT secrets**: Separate for client/admin access
+- **Rate limiting**: 30 requests/minute per IP
+
+### Deployment Pipeline
+1. **Frontend**: GitHub Pages (automatic from main branch)
+2. **Backend**: Vercel (manual deployment)
+3. **Database**: MongoDB Atlas (cloud hosted)
+4. **Domain**: `inteligenciaartificialparanegocios.com` with Facebook verification
+
 ## Important Notes
-- The web development service offers traditional websites only (no AI features)
-- Case studies currently use placeholder examples
-- Backend designed for Vercel deployment
-- Rate limiting: 30 requests/minute per IP
-- Admin dashboard currently uses in-memory storage (MongoDB integration pending)
+- **Facebook Pixel**: Tracks complete customer journey with MXN pricing
+- **SEO**: 100% optimized with structured data and geo-targeting
+- **Monitoring**: Automated SEO performance tracking via GSC MCP
+- **Multi-tenant**: Each client isolated with unique assistant and token
+- **Production ready**: Error handling, logging, graceful shutdowns
