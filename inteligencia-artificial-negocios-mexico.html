@@ -258,6 +258,129 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* Contact Section Styles */
+        .contact-section {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: #1F2937;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            color: #64748b;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
+        }
+        
+        .contact-item strong {
+            color: #1F2937;
+            font-weight: 600;
+        }
+        
+        .contact-item a {
+            color: #4F46E5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #1F2937;
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #4F46E5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #9CA3AF;
+        }
+        
+        .contact-form button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #4F46E5, #7C3AED);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+        }
     </style>
     
     <!-- Schema.org Structured Data -->
@@ -691,41 +814,6 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <div class="container">
-            <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"Con el chatbot de iAN aumentamos nuestras ventas 250% en 3 meses. Ahora atendemos clientes 24/7 sin aumentar personal."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-name">María González</div>
-                        <div class="author-title">Directora de Ventas, TechMéxico</div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"La prospección automática con IA nos redujo el costo por lead en 70%. Ahora generamos más prospectos con menos inversión."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-name">Carlos Rodríguez</div>
-                        <div class="author-title">CEO, InnovaPlus</div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"Nuestro sitio web con IA convierte 5 veces más que el anterior. Los clientes quedan impresionados con la experiencia."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-name">Ana Martínez</div>
-                        <div class="author-title">Fundadora, EcoSolutions</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
