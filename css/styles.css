@@ -3282,3 +3282,141 @@ section {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* ========================================
+   CORE WEB VITALS OPTIMIZATIONS 2025
+   ======================================== */
+
+/* CLS Prevention: Explicit dimensions for images */
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+/* Logo optimization */
+.logo img {
+    width: 120px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.footer-logo {
+    width: 80px;
+    height: 27px;
+    object-fit: contain;
+}
+
+/* Font loading optimization - prevent CLS */
+@font-face {
+    font-family: 'Inter';
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+}
+
+/* Prevent layout shifts on hero sections */
+.hero {
+    min-height: 80vh;
+    contain: layout style;
+}
+
+.hero-title {
+    contain: layout;
+}
+
+/* Optimize button interactions for INP */
+.btn, button, [role="button"] {
+    contain: layout style;
+    will-change: transform;
+}
+
+.btn:hover, button:hover {
+    transform: translateY(-2px);
+}
+
+/* Container queries for responsive optimization */
+.container {
+    contain: layout style;
+}
+
+/* Optimize animations for better INP */
+@media (prefers-reduced-motion: no-preference) {
+    .animate-on-scroll {
+        will-change: transform, opacity;
+    }
+}
+
+/* Critical CSS for above-the-fold content */
+.navbar {
+    contain: layout style;
+    height: 80px;
+}
+
+/* Reserve space for dynamic content */
+.stats-grid .stat-card {
+    min-height: 120px;
+    contain: layout;
+}
+
+/* Optimize form elements for INP */
+input, textarea, select {
+    contain: layout style;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Lazy loading optimization */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}
+
+/* Mobile menu optimization */
+.mobile-menu {
+    contain: layout style;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+/* Image optimization classes */
+.img-responsive {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.img-logo {
+    width: auto;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* Prevent cumulative layout shift */
+.content-wrapper {
+    min-height: 100vh;
+    contain: layout;
+}
+
+/* WhatsApp button optimization */
+.whatsapp-float {
+    contain: layout style;
+    will-change: transform;
+}
+
+/* Performance hints for critical elements */
+.critical-above-fold {
+    contain: layout style paint;
+}
+
+/* Optimize grid layouts for CLS */
+.services-grid, .benefits-grid, .testimonials-grid {
+    contain: layout;
+}
+
+/* END CORE WEB VITALS OPTIMIZATIONS */
