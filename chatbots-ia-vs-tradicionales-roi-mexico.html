@@ -160,10 +160,14 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
+            display: flex;
+            align-items: center;
             text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
@@ -707,7 +711,9 @@
     <!-- Header -->
     <header class="header">
         <nav class="container nav">
-            <a href="/" class="logo">iAN</a>
+            <a href="/" class="logo">
+                <img src="assets/logo/logo ian.png" alt="iAN - Inteligencia Artificial para Negocios">
+            </a>
             <ul class="nav-links">
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/prospeccion-ia.html">Prospección IA</a></li>
@@ -916,7 +922,7 @@
                 <form id="chatbotROICalculator">
                     <div class="form-group">
                         <label for="monthlyCustomers">Clientes atendidos por mes</label>
-                        <input type="number" id="monthlyCustomers" class="form-control" placeholder="ej. 1500" min="100">
+                        <input type="number" id="monthlyCustomers" class="form-control" placeholder="ej. 1500" min="1">
                     </div>
                     <div class="form-group">
                         <label for="avgTicket">Ticket promedio por cliente (MXN)</label>
@@ -1206,7 +1212,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="number" name="monthly_customers" class="form-control" placeholder="Clientes atendidos por mes (aprox)" min="100">
+                    <input type="number" name="monthly_customers" class="form-control" placeholder="Clientes atendidos por mes (aprox)" min="1">
                 </div>
                 
                 <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem; padding: 1rem;">

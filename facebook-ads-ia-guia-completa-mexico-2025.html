@@ -168,10 +168,14 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
+            display: flex;
+            align-items: center;
             text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
         }
 
         .nav-links {
@@ -675,7 +679,9 @@
     <!-- Header -->
     <header class="header">
         <nav class="container nav">
-            <a href="/" class="logo">iAN</a>
+            <a href="/" class="logo">
+                <img src="assets/logo/logo ian.png" alt="iAN - Inteligencia Artificial para Negocios">
+            </a>
             <ul class="nav-links">
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/prospeccion-ia.html">Prospección IA</a></li>
