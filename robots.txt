@@ -1,9 +1,107 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /components/
-Disallow: /js/
-Disallow: /css/
-Disallow: /assets/
 
+# Sitemap
 Sitemap: https://inteligenciaartificialparanegocios.com/sitemap.xml
+
+# High-priority pages for crawling
+Allow: /index.html
+Allow: /inteligencia-artificial-negocios-mexico.html
+Allow: /desarrollo-web.html
+Allow: /prospeccion-ia.html
+Allow: /cursos-ia.html
+Allow: /chatbots-ia-vs-tradicionales-roi-mexico.html
+Allow: /facebook-ads-ia-guia-completa-mexico-2025.html
+
+# Assets and resources (allow for page rendering)
+Allow: /css/
+Allow: /js/
+Allow: /img/
+Allow: /assets/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# User-agent specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Block bad bots and scrapers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+# Block development and testing files
+Disallow: /test/
+Disallow: /dev/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /README.md
+Disallow: /CLAUDE.md
+
+# Block backend and API endpoints
+Disallow: /api/
+Disallow: /backend/
+Disallow: /components/
+Disallow: /widget/
+
+# Block temporary files
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /*.tmp
+Disallow: /*.log
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /dashboard/
+
+# Block search result pages to avoid duplicate content
+Disallow: /search
+Disallow: /*search*
+Disallow: /*q=*
+Disallow: /*query=*
+
+# Block session and parameter URLs
+Disallow: /*sessionid*
+Disallow: /*sid=*
+Disallow: /*?*ref=*
+Disallow: /*?*utm_*
