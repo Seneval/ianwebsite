@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog de IA para Negocios | iAN - Inteligencia Artificial México</title>
+    <meta name="description" content="Artículos y guías sobre implementación de inteligencia artificial en negocios mexicanos. Chatbots, automatización, prospección digital y más.">
+    
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content="Blog de IA para Negocios | iAN México">
+    <meta property="og:description" content="Artículos y guías sobre implementación de inteligencia artificial en negocios mexicanos">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inteligenciaartificialparanegocios.com/blog/">
+    <meta property="og:image" content="https://inteligenciaartificialparanegocios.com/assets/images/og-blog.jpg">
+    <meta property="og:locale" content="es_MX">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog de IA para Negocios | iAN México">
+    <meta name="twitter:description" content="Artículos y guías sobre implementación de inteligencia artificial en negocios mexicanos">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://inteligenciaartificialparanegocios.com/blog/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .blog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 16px;
+        }
+        
+        .blog-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-card-content {
+            padding: 2rem;
+        }
+        
+        .blog-card-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            color: #666;
+        }
+        
+        .blog-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gray-900);
+        }
+        
+        .blog-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: var(--secondary);
+        }
+        
+        .read-more svg {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover svg {
+            transform: translateX(5px);
+        }
+        
+        .blog-categories {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+        }
+        
+        .category-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .category-tag {
+            padding: 0.5rem 1.5rem;
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .category-tag:hover,
+        .category-tag.active {
+            background: var(--primary);
+            color: white;
+        }
+    </style>
+    
+    <!-- Structured Data for Blog -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Blog de IA para Negocios - iAN México",
+        "description": "Artículos y guías sobre implementación de inteligencia artificial en negocios mexicanos",
+        "url": "https://inteligenciaartificialparanegocios.com/blog/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "iAN - Inteligencia Artificial para Negocios",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://inteligenciaartificialparanegocios.com/assets/logo/logo ian.png"
+            }
+        },
+        "inLanguage": "es-MX",
+        "isAccessibleForFree": true
+    }
+    </script>
+    
+    <!-- Facebook Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1524862538485702');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+        content_name: 'Blog Principal',
+        content_category: 'Blog',
+        value: 0,
+        currency: 'MXN'
+    });
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1524862538485702&ev=PageView&noscript=1"
+    /></noscript>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo/logo ian.png" alt="iAN Logo">
+            </a>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">Inicio</a>
+                <a href="../index.html#servicios" class="nav-link">Servicios</a>
+                <a href="../desarrollo-web.html" class="nav-link">Desarrollo Web</a>
+                <a href="../prospeccion-ia.html" class="nav-link">Prospección IA</a>
+                <a href="../cursos-ia.html" class="nav-link">Cursos</a>
+                <a href="/blog/" class="nav-link active">Blog</a>
+                <a href="../index.html#contacto" class="nav-link cta-button">Contactar</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="blog-container">
+            <h1>Blog de IA para Negocios</h1>
+            <p>Guías, tutoriales y casos de éxito sobre inteligencia artificial en México</p>
+        </div>
+    </section>
+    
+    <!-- Categories -->
+    <div class="blog-container">
+        <div class="blog-categories">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">Categorías</h2>
+            <div class="category-tags">
+                <a href="#" class="category-tag active" data-category="all">Todos</a>
+                <a href="#" class="category-tag" data-category="chatbots">Chatbots IA</a>
+                <a href="#" class="category-tag" data-category="desarrollo">Desarrollo Web</a>
+                <a href="#" class="category-tag" data-category="prospeccion">Prospección Digital</a>
+                <a href="#" class="category-tag" data-category="tutoriales">Tutoriales</a>
+                <a href="#" class="category-tag" data-category="casos">Casos de Éxito</a>
+            </div>
+        </div>
+        
+        <!-- Blog Posts Grid -->
+        <div class="blog-grid" id="blogGrid">
+            <!-- Los posts se cargarán dinámicamente aquí -->
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>iAN - IA para Negocios</h3>
+                    <p>Transformando empresas mexicanas con inteligencia artificial</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="../index.html#servicios">Servicios</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="../index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="../index.html#chatbots">Chatbots IA</a></li>
+                        <li><a href="../desarrollo-web.html">Desarrollo Web</a></li>
+                        <li><a href="../prospeccion-ia.html">Prospección Digital</a></li>
+                        <li><a href="../cursos-ia.html">Cursos de IA</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p>WhatsApp: <a href="https://wa.me/528112500801">811 250 0801</a></p>
+                    <p>Atención: Todo México</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 iAN - Inteligencia Artificial para Negocios. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Blog Posts Data -->
+    <script>
+        // Aquí almacenaremos los posts del blog
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Cómo implementar un chatbot IA en tu negocio mexicano",
+                excerpt: "Guía completa para integrar chatbots inteligentes que aumentan ventas y mejoran la atención al cliente 24/7.",
+                date: "18 Julio 2025",
+                category: "chatbots",
+                image: "../assets/images/chatbot-guide.jpg",
+                url: "posts/implementar-chatbot-ia-negocio-mexicano.html",
+                readTime: "5 min"
+            },
+            {
+                id: 2,
+                title: "Facebook Ads con IA: Estrategias para PyMEs mexicanas",
+                excerpt: "Descubre cómo la inteligencia artificial puede optimizar tus campañas de Facebook Ads y reducir costos hasta un 40%.",
+                date: "15 Julio 2025",
+                category: "prospeccion",
+                image: "../assets/images/facebook-ads-ia.jpg",
+                url: "posts/facebook-ads-ia-pymes-mexico.html",
+                readTime: "7 min"
+            },
+            {
+                id: 3,
+                title: "Desarrollo web con IA: El futuro está aquí",
+                excerpt: "Cómo la inteligencia artificial está revolucionando el desarrollo web y por qué tu negocio necesita adaptarse.",
+                date: "10 Julio 2025",
+                category: "desarrollo",
+                image: "../assets/images/desarrollo-web-ia.jpg",
+                url: "posts/desarrollo-web-inteligencia-artificial.html",
+                readTime: "6 min"
+            }
+        ];
+        
+        // Función para renderizar posts
+        function renderPosts(category = 'all') {
+            const blogGrid = document.getElementById('blogGrid');
+            const filteredPosts = category === 'all' 
+                ? blogPosts 
+                : blogPosts.filter(post => post.category === category);
+            
+            blogGrid.innerHTML = filteredPosts.map(post => `
+                <article class="blog-card" data-category="${post.category}">
+                    <img src="${post.image}" alt="${post.title}" class="blog-card-image" onerror="this.src='../assets/images/blog-placeholder.jpg'">
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <span>${post.date}</span>
+                            <span>${post.readTime} de lectura</span>
+                        </div>
+                        <h2>${post.title}</h2>
+                        <p>${post.excerpt}</p>
+                        <a href="${post.url}" class="read-more">
+                            Leer más
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            `).join('');
+        }
+        
+        // Event listeners para categorías
+        document.querySelectorAll('.category-tag').forEach(tag => {
+            tag.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Actualizar clase activa
+                document.querySelectorAll('.category-tag').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Filtrar posts
+                const category = e.target.getAttribute('data-category');
+                renderPosts(category);
+            });
+        });
+        
+        // Renderizar posts iniciales
+        renderPosts();
+        
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    </script>
+    
+    <!-- Facebook Events -->
+    <script src="../js/facebook-events.js"></script>
+</body>
+</html>
