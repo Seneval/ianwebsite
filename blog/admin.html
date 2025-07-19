@@ -3,96 +3,112 @@
 <head>
     <title>Admin - iAN</title>
     <meta name="robots" content="noindex">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #4F46E5; margin-bottom: 20px; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        textarea { min-height: 100px; }
+        button { background: #4F46E5; color: white; border: none; padding: 12px 24px; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #3730A3; }
+        .hidden { display: none; }
+        .output { background: #1f2937; color: #f9fafb; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 12px; white-space: pre-wrap; max-height: 300px; overflow-y: auto; margin-top: 10px; }
+        .success { background: #22c55e; color: white; padding: 10px; border-radius: 4px; margin-bottom: 15px; }
+        .error { background: #ff4444; color: white; padding: 10px; border-radius: 4px; margin-bottom: 15px; }
+        .logout { float: right; background: #ff4444; }
+    </style>
 </head>
-<body style="margin:0;padding:0;font-family:Arial;background:#f0f0f0;min-height:100vh;">
-    
-    <!-- Login -->
-    <div id="login" style="max-width:400px;margin:100px auto;background:white;padding:40px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
-        <h1 style="color:#4F46E5;text-align:center;margin-bottom:30px;">Admin Blog</h1>
-        <div id="error" style="background:#ff4444;color:white;padding:10px;margin-bottom:20px;border-radius:5px;display:none;"></div>
-        <div style="margin-bottom:20px;">
-            <label style="display:block;margin-bottom:8px;font-weight:bold;">Contraseña:</label>
-            <input type="password" id="pass" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;" onkeypress="if(event.key==='Enter')doLogin()">
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="login">
+            <h1>Admin Blog</h1>
+            <div id="loginError" class="error hidden"></div>
+            <div class="form-group">
+                <label>Contraseña:</label>
+                <input type="password" id="password" onkeypress="if(event.key==='Enter')login()">
+            </div>
+            <button onclick="login()">Ingresar</button>
         </div>
-        <button onclick="doLogin()" style="width:100%;padding:12px;background:#4F46E5;color:white;border:none;border-radius:5px;font-size:16px;cursor:pointer;">Ingresar</button>
-    </div>
 
-    <!-- Admin Panel -->
-    <div id="admin" style="display:none;max-width:800px;margin:20px auto;background:white;padding:40px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;">
-            <h1 style="color:#4F46E5;margin:0;">Crear Post</h1>
-            <button onclick="doLogout()" style="padding:8px 16px;background:#ff4444;color:white;border:none;border-radius:5px;cursor:pointer;">Salir</button>
-        </div>
-        
-        <div id="success" style="background:#22c55e;color:white;padding:10px;margin-bottom:20px;border-radius:5px;display:none;"></div>
-        
-        <div style="margin-bottom:20px;">
-            <label style="display:block;margin-bottom:8px;font-weight:bold;">Título:</label>
-            <input type="text" id="title" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;" oninput="makeSlug()">
-        </div>
-        
-        <div style="margin-bottom:20px;">
-            <label style="display:block;margin-bottom:8px;font-weight:bold;">URL Slug:</label>
-            <input type="text" id="slug" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;">
-        </div>
-        
-        <div style="margin-bottom:20px;">
-            <label style="display:block;margin-bottom:8px;font-weight:bold;">Resumen:</label>
-            <textarea id="excerpt" rows="3" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;"></textarea>
-        </div>
-        
-        <div style="margin-bottom:20px;">
-            <label style="display:block;margin-bottom:8px;font-weight:bold;">Categoría:</label>
-            <select id="category" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;">
-                <option value="chatbots">Chatbots IA</option>
-                <option value="desarrollo">Desarrollo Web</option>
-                <option value="prospeccion">Prospección Digital</option>
-                <option value="tutoriales">Tutoriales</option>
-                <option value="casos">Casos de Éxito</option>
-            </select>
-        </div>
-        
-        <div style="margin-bottom:20px;">
-            <label style="display:block;margin-bottom:8px;font-weight:bold;">Contenido HTML:</label>
-            <textarea id="content" rows="10" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:14px;font-family:monospace;"></textarea>
-        </div>
-        
-        <div style="margin-bottom:20px;">
-            <label style="display:block;margin-bottom:8px;font-weight:bold;">Keywords:</label>
-            <input type="text" id="keywords" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;">
-        </div>
-        
-        <button onclick="makePost()" style="width:100%;padding:12px;background:#4F46E5;color:white;border:none;border-radius:5px;font-size:16px;cursor:pointer;margin-bottom:20px;">Generar Post</button>
-        
-        <div id="output" style="display:none;">
-            <h3 style="margin-bottom:15px;">Código Generado:</h3>
-            <div id="code" style="background:#1f2937;color:#f9fafb;padding:15px;border-radius:5px;font-family:monospace;font-size:12px;white-space:pre-wrap;max-height:300px;overflow-y:auto;"></div>
-            <button onclick="copyCode()" style="width:100%;padding:10px;background:#22c55e;color:white;border:none;border-radius:5px;font-size:14px;cursor:pointer;margin-top:10px;">Copiar Código</button>
-            <div style="margin-top:10px;font-size:14px;color:#666;">
-                1. Copia el código<br>
-                2. Crea archivo: blog/posts/[slug].html<br>
-                3. Actualiza blog/index.html<br>
-                4. Commit y push
+        <!-- Admin Panel -->
+        <div id="admin" class="hidden">
+            <h1>Crear Post <button class="logout" onclick="logout()">Salir</button></h1>
+            <div style="clear: both;"></div>
+            
+            <div id="success" class="success hidden"></div>
+            
+            <div class="form-group">
+                <label>Título:</label>
+                <input type="text" id="title" oninput="makeSlug()">
+            </div>
+            
+            <div class="form-group">
+                <label>URL Slug:</label>
+                <input type="text" id="slug">
+            </div>
+            
+            <div class="form-group">
+                <label>Resumen:</label>
+                <textarea id="excerpt"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Categoría:</label>
+                <select id="category">
+                    <option value="chatbots">Chatbots IA</option>
+                    <option value="desarrollo">Desarrollo Web</option>
+                    <option value="prospeccion">Prospección Digital</option>
+                    <option value="tutoriales">Tutoriales</option>
+                    <option value="casos">Casos de Éxito</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Contenido HTML:</label>
+                <textarea id="content" style="min-height: 200px; font-family: monospace;"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Keywords:</label>
+                <input type="text" id="keywords">
+            </div>
+            
+            <button onclick="generatePost()" style="width: 100%; margin-bottom: 15px;">Generar Post</button>
+            
+            <div id="output" class="hidden">
+                <h3>Código Generado:</h3>
+                <div class="output" id="code"></div>
+                <button onclick="copyCode()" style="width: 100%; margin-top: 10px; background: #22c55e;">Copiar Código</button>
+                <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                    1. Copia el código<br>
+                    2. Crea archivo: blog/posts/[slug].html<br>
+                    3. Actualiza blog/index.html<br>
+                    4. Commit y push
+                </p>
             </div>
         </div>
     </div>
 
     <script>
-        function doLogin() {
-            var pass = document.getElementById('pass').value;
+        function login() {
+            var pass = document.getElementById('password').value;
             if (pass === 'ian2025blog') {
-                document.getElementById('login').style.display = 'none';
-                document.getElementById('admin').style.display = 'block';
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('admin').classList.remove('hidden');
                 localStorage.setItem('blogAuth', 'true');
             } else {
-                var err = document.getElementById('error');
+                var err = document.getElementById('loginError');
                 err.textContent = 'Contraseña incorrecta';
-                err.style.display = 'block';
-                document.getElementById('pass').value = '';
+                err.classList.remove('hidden');
+                document.getElementById('password').value = '';
             }
         }
         
-        function doLogout() {
+        function logout() {
             localStorage.removeItem('blogAuth');
             location.reload();
         }
@@ -113,7 +129,7 @@
             document.getElementById('slug').value = slug;
         }
         
-        function makePost() {
+        function generatePost() {
             var title = document.getElementById('title').value;
             var slug = document.getElementById('slug').value;
             var excerpt = document.getElementById('excerpt').value;
@@ -141,17 +157,17 @@
                 'casos': 'Casos de Éxito'
             };
             
-            // Simple string concatenation - NO template literals
-            var html = '<!DOCTYPE html>\n<html lang="es-MX">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + title + ' | iAN Blog</title>\n    <meta name="description" content="' + excerpt + '">\n    \n    <!-- SEO Meta Tags -->\n    <meta property="og:title" content="' + title + '">\n    <meta property="og:description" content="' + excerpt + '">\n    <meta property="og:type" content="article">\n    <meta property="og:url" content="https://inteligenciaartificialparanegocios.com/blog/posts/' + slug + '.html">\n    \n    <!-- CSS -->\n    <link rel="stylesheet" href="../../css/styles.css">\n    <link rel="stylesheet" href="../css/blog-optimized.css">\n    \n    <!-- Structured Data -->\n    <script type="application/ld+json">\n    {\n        "@context": "https://schema.org",\n        "@type": "Article",\n        "headline": "' + title + '",\n        "description": "' + excerpt + '",\n        "datePublished": "' + date + '",\n        "author": {\n            "@type": "Organization",\n            "name": "iAN - Inteligencia Artificial para Negocios"\n        },\n        "keywords": "' + keywords + '"\n    }\n    </script>\n</head>\n<body>\n    <!-- Navigation -->\n    <nav class="navbar">\n        <div class="container">\n            <div class="nav-wrapper">\n                <a href="../../index.html" class="logo">\n                    <img src="../../assets/logo/logo ian.png" alt="iAN Logo" width="120" height="40">\n                </a>\n                <div class="nav-menu">\n                    <a href="../../index.html" class="nav-link">Inicio</a>\n                    <a href="../../index.html#chatbots" class="nav-link">Chatbots IA</a>\n                    <a href="../../index.html#precios" class="nav-link">Precios</a>\n                    <a href="../" class="nav-link active">Blog</a>\n                    <a href="../../index.html#contacto" class="nav-link cta-button">Aumenta tus Ventas</a>\n                </div>\n            </div>\n        </div>\n    </nav>\n    \n    <!-- Article -->\n    <article class="article-container">\n        <nav class="breadcrumb">\n            <a href="../../index.html">Inicio</a> &gt; \n            <a href="../">Blog</a> &gt; \n            <span>' + title + '</span>\n        </nav>\n        \n        <header class="article-header">\n            <div class="article-meta">\n                <time datetime="' + date + '">' + formattedDate + '</time>\n                <span>•</span>\n                <span>5 min de lectura</span>\n                <span>•</span>\n                <span>' + categoryNames[category] + '</span>\n            </div>\n            <h1 class="article-title">' + title + '</h1>\n            <p class="article-excerpt">' + excerpt + '</p>\n        </header>\n        \n        <div class="article-content">\n            ' + content + '\n        </div>\n        \n        <!-- CTA Section -->\n        <div class="cta-section">\n            <h2>¿Listo para implementar IA en tu negocio?</h2>\n            <p>Obtén una consultoría gratuita</p>\n            <a href="https://wa.me/528112500801" class="cta-button">Contactar</a>\n        </div>\n    </article>\n    \n    <!-- Footer -->\n    <footer class="footer">\n        <div class="container">\n            <div class="footer-content">\n                <div class="footer-brand">\n                    <img src="../../assets/logo/logo ian.png" alt="iAN" class="footer-logo">\n                    <p>Inteligencia Artificial para tu negocio</p>\n                </div>\n                <div class="footer-links">\n                    <h4>Servicios</h4>\n                    <a href="../../index.html#chatbots">Chatbots IA</a>\n                    <a href="../../desarrollo-web.html">Desarrollo Web</a>\n                    <a href="../../prospeccion-ia.html">Prospección IA</a>\n                </div>\n                <div class="footer-contact">\n                    <h4>Contacto</h4>\n                    <p>WhatsApp: +52 811 250 0801</p>\n                </div>\n            </div>\n        </div>\n    </footer>\n</body>\n</html>';
+            // Create basic HTML template
+            var html = '<!DOCTYPE html>\n<html lang="es-MX">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + title + ' | iAN Blog</title>\n    <meta name="description" content="' + excerpt + '">\n    <link rel="stylesheet" href="../../css/styles.css">\n    <link rel="stylesheet" href="../css/blog-optimized.css">\n</head>\n<body>\n    <nav class="navbar">\n        <div class="container">\n            <div class="nav-wrapper">\n                <a href="../../index.html" class="logo">\n                    <img src="../../assets/logo/logo ian.png" alt="iAN Logo" width="120" height="40">\n                </a>\n                <div class="nav-menu">\n                    <a href="../../index.html" class="nav-link">Inicio</a>\n                    <a href="../../index.html#chatbots" class="nav-link">Chatbots IA</a>\n                    <a href="../../index.html#precios" class="nav-link">Precios</a>\n                    <a href="../" class="nav-link active">Blog</a>\n                    <a href="../../index.html#contacto" class="nav-link cta-button">Aumenta tus Ventas</a>\n                </div>\n            </div>\n        </div>\n    </nav>\n    \n    <article class="article-container">\n        <nav class="breadcrumb">\n            <a href="../../index.html">Inicio</a> > \n            <a href="../">Blog</a> > \n            <span>' + title + '</span>\n        </nav>\n        \n        <header class="article-header">\n            <div class="article-meta">\n                <time datetime="' + date + '">' + formattedDate + '</time>\n                <span>•</span>\n                <span>5 min de lectura</span>\n                <span>•</span>\n                <span>' + categoryNames[category] + '</span>\n            </div>\n            <h1 class="article-title">' + title + '</h1>\n            <p class="article-excerpt">' + excerpt + '</p>\n        </header>\n        \n        <div class="article-content">\n            ' + content + '\n        </div>\n        \n        <div class="cta-section">\n            <h2>¿Listo para implementar IA en tu negocio?</h2>\n            <p>Obtén una consultoría gratuita</p>\n            <a href="https://wa.me/528112500801" class="cta-button">Contactar</a>\n        </div>\n    </article>\n    \n    <footer class="footer">\n        <div class="container">\n            <div class="footer-content">\n                <div class="footer-brand">\n                    <img src="../../assets/logo/logo ian.png" alt="iAN" class="footer-logo">\n                    <p>Inteligencia Artificial para tu negocio</p>\n                </div>\n                <div class="footer-links">\n                    <h4>Servicios</h4>\n                    <a href="../../index.html#chatbots">Chatbots IA</a>\n                    <a href="../../desarrollo-web.html">Desarrollo Web</a>\n                    <a href="../../prospeccion-ia.html">Prospección IA</a>\n                </div>\n                <div class="footer-contact">\n                    <h4>Contacto</h4>\n                    <p>WhatsApp: +52 811 250 0801</p>\n                </div>\n            </div>\n        </div>\n    </footer>\n</body>\n</html>';
             
             document.getElementById('code').textContent = html;
-            document.getElementById('output').style.display = 'block';
+            document.getElementById('output').classList.remove('hidden');
             
             var success = document.getElementById('success');
             success.textContent = 'Código generado exitosamente!';
-            success.style.display = 'block';
+            success.classList.remove('hidden');
             setTimeout(function() {
-                success.style.display = 'none';
+                success.classList.add('hidden');
             }, 3000);
         }
         
@@ -172,10 +188,10 @@
             }
         }
         
-        // Check auth
+        // Check auth on load
         if (localStorage.getItem('blogAuth') === 'true') {
-            document.getElementById('login').style.display = 'none';
-            document.getElementById('admin').style.display = 'block';
+            document.getElementById('login').classList.add('hidden');
+            document.getElementById('admin').classList.remove('hidden');
         }
     </script>
 </body>
