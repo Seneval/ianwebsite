@@ -83,7 +83,7 @@ function optimizeEventListeners() {
 function preloadCriticalResources() {
     const criticalResources = [
         { href: 'css/styles.css', as: 'style' },
-        { href: 'assets/logo/logo ian.png', as: 'image', fetchpriority: 'high' }
+        { href: 'assets/logo/logo-80.webp', as: 'image', fetchpriority: 'high' }
     ];
 
     criticalResources.forEach(resource => {

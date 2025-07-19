@@ -25,6 +25,15 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://inteligenciaartificialparanegocios.com/blog/posts/implementar-chatbot-ia-negocio-mexicano.html">
     
+    <!-- Performance: Preconnect hints for better loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Performance: Preconnect to external domains for faster resource loading -->
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://www.facebook.com">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../../assets/favicon/favicon.ico">
     
@@ -132,7 +141,21 @@
         <div class="container">
             <div class="nav-wrapper">
                 <a href="../../index.html" class="logo">
-                    <img src="../../assets/logo/logo ian.png" alt="iAN - Inteligencia Artificial para Negocios" width="120" height="40" fetchpriority="high">
+                    <picture>
+                        <source media="(min-width: 768px)" 
+                                srcset="../../assets/logo/logo-80.webp 1x, ../../assets/logo/logo-160.webp 2x" 
+                                type="image/webp">
+                        <source media="(min-width: 768px)" 
+                                srcset="../../assets/logo/logo-80.png 1x, ../../assets/logo/logo-160.png 2x" 
+                                type="image/png">
+                        <source srcset="../../assets/logo/logo-40.webp 1x, ../../assets/logo/logo-80.webp 2x" 
+                                type="image/webp">
+                        <img src="../../assets/logo/logo-80.png" 
+                             alt="iAN - Inteligencia Artificial para Negocios" 
+                             width="120" height="40" 
+                             fetchpriority="high"
+                             loading="eager">
+                    </picture>
                 </a>
                 <div class="nav-menu">
                     <a href="../../index.html" class="nav-link">Inicio</a>
@@ -733,7 +756,10 @@
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
                 <div>
-                    <img src="../../assets/logo/logo ian.png" alt="iAN" width="80" height="27" loading="lazy" style="margin-bottom: 15px;">
+                    <picture>
+                        <source srcset="../../assets/logo/logo-80.webp 1x, ../../assets/logo/logo-160.webp 2x" type="image/webp">
+                        <img src="../../assets/logo/logo-80.png" alt="iAN" width="80" height="27" loading="lazy" style="margin-bottom: 15px;">
+                    </picture>
                     <p style="color: #d1d5db; line-height: 1.6; margin: 0;">Inteligencia Artificial que impulsa tu negocio al siguiente nivel</p>
                 </div>
                 <div>

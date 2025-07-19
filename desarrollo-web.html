@@ -12,6 +12,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Performance: Preconnect to external domains for faster resource loading -->
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://www.facebook.com">
+    
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/animations.css">
     
@@ -145,7 +149,21 @@
         <div class="container">
             <div class="nav-wrapper">
                 <a href="index.html" class="logo">
-                    <img src="assets/logo/logo ian.png" alt="iAN - Inteligencia Artificial para Negocios">
+                    <picture>
+                        <source media="(min-width: 768px)" 
+                                srcset="assets/logo/logo-80.webp 1x, assets/logo/logo-160.webp 2x" 
+                                type="image/webp">
+                        <source media="(min-width: 768px)" 
+                                srcset="assets/logo/logo-80.png 1x, assets/logo/logo-160.png 2x" 
+                                type="image/png">
+                        <source srcset="assets/logo/logo-40.webp 1x, assets/logo/logo-80.webp 2x" 
+                                type="image/webp">
+                        <img src="assets/logo/logo-80.png" 
+                             alt="iAN - Inteligencia Artificial para Negocios" 
+                             width="120" height="40" 
+                             fetchpriority="high"
+                             loading="eager">
+                    </picture>
                 </a>
                 <div class="nav-menu">
                     <a href="index.html" class="nav-link">Inicio</a>
@@ -755,7 +773,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <img src="assets/logo/logo ian.png" alt="iAN" class="footer-logo">
+                    <picture>
+                        <source srcset="assets/logo/logo-80.webp 1x, assets/logo/logo-160.webp 2x" type="image/webp">
+                        <img src="assets/logo/logo-80.png" alt="iAN" class="footer-logo" width="80" height="27" loading="lazy">
+                    </picture>
                     <p>Inteligencia Artificial que transforma negocios. Chatbots y sitios web que venden 24/7.</p>
                 </div>
                 <div class="footer-links">
