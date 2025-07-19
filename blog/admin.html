@@ -6,138 +6,291 @@
     <title>Admin Blog - iAN</title>
     <meta name="robots" content="noindex, nofollow">
     
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="../css/styles.css" as="style">
+    
     <!-- CSS -->
     <link rel="stylesheet" href="../css/styles.css">
     <style>
+        /* Admin Panel Styles - Optimized for Speed and Design */
         body {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
+        /* Navigation - Same as homepage */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #4F46E5;
+        }
+        
+        .nav-link.active {
+            color: #4F46E5;
+            font-weight: 600;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #374151;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        /* Main Content */
         .admin-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 100px 20px 40px;
         }
         
         .admin-header {
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(79, 70, 229, 0.1);
         }
         
         .admin-header h1 {
+            margin: 0 0 8px 0;
+            color: #111827;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .admin-header p {
             margin: 0;
-            color: var(--gray-900);
+            color: #6B7280;
+            font-size: 1.125rem;
+        }
+        
+        .logout-btn {
+            float: right;
+            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
         }
         
         .admin-section {
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(79, 70, 229, 0.05);
+        }
+        
+        .admin-section h2 {
+            margin: 0 0 24px 0;
+            color: #111827;
+            font-size: 1.875rem;
+            font-weight: 700;
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 24px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 8px;
             font-weight: 600;
-            color: var(--gray-900);
+            color: #374151;
+            font-size: 1rem;
         }
         
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            padding: 16px;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
+            font-family: inherit;
+            background: #F9FAFB;
         }
         
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: #4F46E5;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
         
         .form-group textarea {
-            min-height: 400px;
-            font-family: 'Courier New', monospace;
+            min-height: 300px;
+            font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
         }
         
         .btn-primary {
-            background: var(--primary);
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
             color: white;
-            padding: 0.75rem 2rem;
+            padding: 16px 32px;
             border: none;
-            border-radius: 8px;
+            border-radius: 25px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
         }
         
         .btn-primary:hover {
-            background: var(--secondary);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
         }
         
         .post-template {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
+            background: #1F2937;
+            color: #F9FAFB;
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 16px;
+            font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.875rem;
             white-space: pre-wrap;
             overflow-x: auto;
+            line-height: 1.6;
+            border: 1px solid #374151;
         }
         
         .help-text {
             font-size: 0.875rem;
-            color: #666;
-            margin-top: 0.25rem;
+            color: #6B7280;
+            margin-top: 8px;
+            font-style: italic;
         }
         
         .auth-section {
-            max-width: 400px;
-            margin: 100px auto;
+            max-width: 450px;
+            margin: 150px auto;
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 50px 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.1);
         }
         
         .auth-section h2 {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 32px;
+            color: #111827;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .error-message {
-            background: #fee;
-            color: #c33;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
+            color: #DC2626;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
             display: none;
+            border: 1px solid #FECACA;
+            font-weight: 500;
         }
         
         .success-message {
-            background: #efe;
-            color: #3c3;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+            color: #16A34A;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
             display: none;
+            border: 1px solid #BBF7D0;
+            font-weight: 500;
         }
         
         #adminPanel {
@@ -145,34 +298,163 @@
         }
         
         .post-list {
-            margin-top: 2rem;
+            margin-top: 24px;
         }
         
         .post-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
+            padding: 20px;
+            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s;
         }
         
-        .post-item button {
-            background: #dc3545;
+        .post-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .post-item a {
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
             color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
         }
         
-        .post-item button:hover {
-            background: #c82333;
+        .post-item a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+        }
+        
+        .instructions ol {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .instructions li {
+            counter-increment: step-counter;
+            position: relative;
+            padding: 16px 0 16px 60px;
+            margin-bottom: 12px;
+            background: #F8FAFC;
+            border-radius: 12px;
+            border-left: 4px solid #4F46E5;
+        }
+        
+        .instructions li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #4F46E5;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        code {
+            background: #F1F5F9;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: #4F46E5;
+            border: 1px solid #E2E8F0;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .admin-container {
+                padding: 100px 16px 40px;
+            }
+            
+            .admin-header,
+            .admin-section {
+                padding: 24px;
+                border-radius: 16px;
+            }
+            
+            .auth-section {
+                margin: 100px 20px;
+                padding: 32px 24px;
+            }
+            
+            .logout-btn {
+                float: none;
+                margin-top: 16px;
+                width: 100%;
+            }
+        }
+        
+        /* Performance Optimizations */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="../index.html" class="logo">
+                    <img src="../assets/logo/logo ian.png" alt="iAN - Inteligencia Artificial para Negocios" width="120" height="40" fetchpriority="high">
+                </a>
+                <div class="nav-menu">
+                    <a href="../index.html" class="nav-link">Inicio</a>
+                    <a href="../index.html#chatbots" class="nav-link">Chatbots IA</a>
+                    <a href="../index.html#precios" class="nav-link">Precios</a>
+                    <div class="nav-dropdown">
+                        <a href="../index.html#servicios" class="nav-link dropdown-toggle">Otros Servicios</a>
+                        <div class="dropdown-menu">
+                            <a href="../desarrollo-web.html" class="dropdown-item">Desarrollo Web</a>
+                            <a href="../prospeccion-ia.html" class="dropdown-item">Prospección con IA</a>
+                            <a href="../cursos-ia.html" class="dropdown-item">Cursos de IA</a>
+                        </div>
+                    </div>
+                    <a href="./" class="nav-link active">Blog</a>
+                    <a href="../index.html#contacto" class="nav-link cta-button">Aumenta tus Ventas</a>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
     <!-- Auth Section -->
     <div id="authSection" class="auth-section">
         <h2>Admin Blog - iAN</h2>
@@ -192,7 +474,7 @@
             <div class="admin-header">
                 <h1>Administrador del Blog</h1>
                 <p>Panel para crear y gestionar posts del blog</p>
-                <button onclick="logout()" style="float: right; background: #dc3545;" class="btn-primary">Cerrar Sesión</button>
+                <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
             </div>
             
             <div class="admin-section">
@@ -259,7 +541,7 @@
                 </div>
             </div>
             
-            <div class="admin-section">
+            <div class="admin-section instructions">
                 <h2>Instrucciones</h2>
                 <ol>
                     <li>Completa todos los campos del formulario</li>
