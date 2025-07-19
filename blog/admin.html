@@ -6,763 +6,299 @@
     <title>Admin Blog - iAN</title>
     <meta name="robots" content="noindex, nofollow">
     
-    <!-- Cache Busting -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
     <style>
-        /* CSS Reset and Isolation */
-        .admin-app * {
-            box-sizing: border-box;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
         
-        /* Base Styles */
-        .admin-app {
+        body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             min-height: 100vh;
-            padding: 0;
-            margin: 0;
         }
         
-        /* Navigation */
-        .admin-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 0 20px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .admin-nav .logo {
-            height: 40px;
-        }
-        
-        .admin-nav .nav-links {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-        }
-        
-        .admin-nav a {
-            color: #374151;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .admin-nav a:hover {
-            color: #4F46E5;
-        }
-        
-        .admin-nav .cta-btn {
-            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-            color: white !important;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-        
-        /* Main Container */
-        .admin-container {
-            padding-top: 90px;
-            max-width: 1200px;
+        .container {
+            max-width: 800px;
             margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 40px;
+            padding: 40px 20px;
         }
         
-        /* Cards */
-        .admin-card {
+        .card {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 32px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(79, 70, 229, 0.1);
-        }
-        
-        .admin-card h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-        
-        .admin-card h2 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: #111827;
+            border-radius: 16px;
+            padding: 32px;
             margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        .admin-card p {
-            color: #6B7280;
-            font-size: 1.125rem;
-            margin-bottom: 0;
-        }
-        
-        /* Auth Section */
-        .auth-section {
-            max-width: 450px;
-            margin: 150px auto;
-            background: white;
-            padding: 50px 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(79, 70, 229, 0.1);
-        }
-        
-        .auth-section h2 {
+        h1 {
+            color: #4F46E5;
+            margin-bottom: 24px;
             text-align: center;
-            margin-bottom: 32px;
-            color: #111827;
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         
-        /* Form Styles */
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         
-        .form-group label {
+        label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: #374151;
-            font-size: 1rem;
         }
         
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
+        input, textarea, select {
             width: 100%;
-            padding: 16px;
-            border: 2px solid #E5E7EB;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: inherit;
-            background: #F9FAFB;
-            color: #374151;
-            transition: all 0.3s;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #374151 !important;
+            background: white !important;
         }
         
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: #4F46E5;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
         
-        .form-group textarea {
-            min-height: 300px;
-            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
-            font-size: 0.875rem;
-            line-height: 1.6;
+        textarea {
+            min-height: 200px;
+            font-family: monospace;
         }
         
-        /* Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-            color: white;
-            padding: 16px 32px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
-        }
-        
-        .btn-secondary {
-            background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+        button {
+            background: #4F46E5;
             color: white;
             padding: 12px 24px;
             border: none;
-            border-radius: 20px;
+            border-radius: 8px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            float: right;
+            width: 100%;
         }
         
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+        button:hover {
+            background: #4338CA;
         }
         
-        /* Messages */
-        .message {
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            font-weight: 500;
+        .hidden {
             display: none;
         }
         
-        .message.error {
-            background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);
-            color: #DC2626;
-            border: 1px solid #FECACA;
+        .success {
+            background: #10B981;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            text-align: center;
         }
         
-        .message.success {
-            background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
-            color: #16A34A;
-            border: 1px solid #BBF7D0;
+        .error {
+            background: #EF4444;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            text-align: center;
         }
         
-        /* Code Display */
-        .code-display {
-            background: #1F2937;
-            color: #F9FAFB;
-            padding: 24px;
-            border-radius: 12px;
-            margin-top: 16px;
-            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
-            font-size: 0.875rem;
+        .code-output {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
             white-space: pre-wrap;
-            overflow-x: auto;
-            line-height: 1.6;
-            border: 1px solid #374151;
             max-height: 400px;
+            overflow-y: auto;
+            margin-top: 16px;
         }
         
-        /* Help Text */
-        .help-text {
-            font-size: 0.875rem;
-            color: #6B7280;
-            margin-top: 8px;
-            font-style: italic;
-        }
-        
-        /* Hidden by default */
-        .hidden {
-            display: none !important;
-        }
-        
-        /* Instructions */
-        .instructions ol {
-            counter-reset: step-counter;
-            list-style: none;
-            padding: 0;
-        }
-        
-        .instructions li {
-            counter-increment: step-counter;
-            position: relative;
-            padding: 16px 0 16px 60px;
-            margin-bottom: 12px;
-            background: #F8FAFC;
-            border-radius: 12px;
-            border-left: 4px solid #4F46E5;
-        }
-        
-        .instructions li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #4F46E5;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-        
-        .instructions code {
-            background: #F1F5F9;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-family: 'Monaco', 'Consolas', 'Courier New', monospace;
-            font-size: 0.875rem;
-            color: #4F46E5;
-            border: 1px solid #E2E8F0;
-        }
-        
-        /* Post List */
-        .post-list {
-            margin-top: 24px;
-        }
-        
-        .post-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border: 1px solid #E2E8F0;
-            transition: all 0.3s;
-        }
-        
-        .post-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .post-item a {
-            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .post-item a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
-        }
-        
-        /* Mobile */
-        @media (max-width: 768px) {
-            .admin-nav .nav-links {
-                display: none;
-            }
-            
-            .admin-container {
-                padding: 100px 16px 40px;
-            }
-            
-            .admin-card {
-                padding: 24px;
-                border-radius: 16px;
-            }
-            
-            .auth-section {
-                margin: 100px 20px;
-                padding: 32px 24px;
-            }
-            
-            .btn-secondary {
-                float: none;
-                margin-top: 16px;
-                width: 100%;
-            }
+        .help {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 4px;
         }
     </style>
 </head>
 
 <body>
-    <div class="admin-app">
-        <!-- Navigation -->
-        <nav class="admin-nav">
-            <img src="../assets/logo/logo ian.png" alt="iAN Logo" class="logo">
-            <div class="nav-links">
-                <a href="../index.html">Inicio</a>
-                <a href="../index.html#chatbots">Chatbots IA</a>
-                <a href="../index.html#precios">Precios</a>
-                <a href="./">Blog</a>
-                <a href="../index.html#contacto" class="cta-btn">Aumenta tus Ventas</a>
+    <!-- Login Section -->
+    <div id="loginSection" class="container">
+        <div class="card">
+            <h1>Admin Blog - iAN</h1>
+            <div id="loginError" class="error hidden"></div>
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" placeholder="Ingresa la contraseña">
             </div>
-        </nav>
-
-        <!-- Auth Section -->
-        <div id="authSection" class="auth-section">
-            <h2>Admin Blog - iAN</h2>
-            <div id="errorMessage" class="message error"></div>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" required autocomplete="current-password">
-                </div>
-                <button type="submit" class="btn-primary" style="width: 100%;">Ingresar</button>
-            </form>
+            <button onclick="login()">Ingresar</button>
         </div>
+    </div>
 
-        <!-- Admin Panel -->
-        <div id="adminPanel" class="hidden">
-            <div class="admin-container">
-                <!-- Header -->
-                <div class="admin-card">
-                    <h1>Administrador del Blog</h1>
-                    <p>Panel para crear y gestionar posts del blog</p>
-                    <button id="logoutBtn" class="btn-secondary">Cerrar Sesión</button>
-                    <div style="clear: both;"></div>
-                </div>
-
-                <!-- Create Post Form -->
-                <div class="admin-card">
-                    <h2>Crear Nuevo Post</h2>
-                    <div id="successMessage" class="message success"></div>
-                    
-                    <form id="postForm">
-                        <div class="form-group">
-                            <label for="postTitle">Título del Post:</label>
-                            <input type="text" id="postTitle" required>
-                            <p class="help-text">Ejemplo: "Cómo implementar un chatbot IA en tu negocio mexicano"</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="postSlug">URL Slug:</label>
-                            <input type="text" id="postSlug" required>
-                            <p class="help-text">Ejemplo: "implementar-chatbot-ia-negocio-mexicano" (sin .html)</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="postExcerpt">Resumen (Excerpt):</label>
-                            <textarea id="postExcerpt" rows="3" required></textarea>
-                            <p class="help-text">Breve descripción del post (máx. 160 caracteres)</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="postCategory">Categoría:</label>
-                            <select id="postCategory" required>
-                                <option value="chatbots">Chatbots IA</option>
-                                <option value="desarrollo">Desarrollo Web</option>
-                                <option value="prospeccion">Prospección Digital</option>
-                                <option value="tutoriales">Tutoriales</option>
-                                <option value="casos">Casos de Éxito</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="postContent">Contenido HTML:</label>
-                            <textarea id="postContent" required></textarea>
-                            <p class="help-text">Pega aquí el contenido HTML del artículo (sin &lt;html&gt;, &lt;head&gt;, &lt;body&gt;)</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="postKeywords">Keywords SEO:</label>
-                            <input type="text" id="postKeywords">
-                            <p class="help-text">Separadas por comas. Ej: "chatbot ia mexico, implementar chatbot negocio"</p>
-                        </div>
-                        
-                        <button type="submit" class="btn-primary">Generar Archivo del Post</button>
-                    </form>
-                    
-                    <div id="generatedCode" class="hidden">
-                        <h3 style="margin-top: 32px; margin-bottom: 16px;">Código Generado:</h3>
-                        <div id="postTemplate" class="code-display"></div>
-                        <button id="copyBtn" class="btn-primary" style="margin-top: 16px;">Copiar Código</button>
-                        <p class="help-text">Crea un archivo nuevo en: blog/posts/[slug].html y pega este código</p>
-                    </div>
-                </div>
-
-                <!-- Posts List -->
-                <div class="admin-card">
-                    <h2>Posts Existentes</h2>
-                    <div id="postList" class="post-list">
-                        <!-- Se cargará dinámicamente -->
-                    </div>
-                </div>
-
-                <!-- Instructions -->
-                <div class="admin-card instructions">
-                    <h2>Instrucciones</h2>
-                    <ol>
-                        <li>Completa todos los campos del formulario</li>
-                        <li>El sistema generará el código HTML completo del post</li>
-                        <li>Crea un nuevo archivo en <code>blog/posts/[slug].html</code></li>
-                        <li>Pega el código generado y guarda el archivo</li>
-                        <li>Actualiza el array de posts en <code>blog/index.html</code></li>
-                        <li>Actualiza el <code>sitemap.xml</code> con la nueva URL</li>
-                        <li>Haz commit y push a GitHub</li>
-                    </ol>
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="container hidden">
+        <div class="card">
+            <h1>Crear Nuevo Post</h1>
+            <button onclick="logout()" style="width: auto; float: right; background: #EF4444;">Salir</button>
+            <div style="clear: both;"></div>
+            
+            <div id="success" class="success hidden"></div>
+            
+            <div class="form-group">
+                <label for="title">Título del Post:</label>
+                <input type="text" id="title" placeholder="Ejemplo: Cómo implementar un chatbot IA">
+                <div class="help">Este será el título principal del artículo</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="slug">URL Slug:</label>
+                <input type="text" id="slug" placeholder="ejemplo-chatbot-ia-negocio">
+                <div class="help">Solo letras, números y guiones (sin .html)</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="excerpt">Resumen:</label>
+                <textarea id="excerpt" rows="3" placeholder="Breve descripción del post..."></textarea>
+                <div class="help">Máximo 160 caracteres para SEO</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Categoría:</label>
+                <select id="category">
+                    <option value="chatbots">Chatbots IA</option>
+                    <option value="desarrollo">Desarrollo Web</option>
+                    <option value="prospeccion">Prospección Digital</option>
+                    <option value="tutoriales">Tutoriales</option>
+                    <option value="casos">Casos de Éxito</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="content">Contenido HTML:</label>
+                <textarea id="content" placeholder="<p>Contenido del artículo en HTML...</p>"></textarea>
+                <div class="help">Pega aquí el HTML del contenido (sin etiquetas html, head, body)</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="keywords">Keywords SEO:</label>
+                <input type="text" id="keywords" placeholder="chatbot ia mexico, implementar chatbot">
+                <div class="help">Separadas por comas</div>
+            </div>
+            
+            <button onclick="generatePost()">Generar Código del Post</button>
+            
+            <div id="output" class="hidden">
+                <h3 style="margin-top: 24px; margin-bottom: 16px;">Código Generado:</h3>
+                <div id="codeOutput" class="code-output"></div>
+                <button onclick="copyCode()" style="margin-top: 16px;">Copiar Código</button>
+                <div class="help" style="margin-top: 8px;">
+                    Instrucciones:<br>
+                    1. Copia este código<br>
+                    2. Crea archivo: blog/posts/[slug].html<br>
+                    3. Pega el código y guarda<br>
+                    4. Actualiza blog/index.html agregando el post al array<br>
+                    5. Haz commit y push
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Admin App - Modular and Error-Safe Implementation
-        class AdminApp {
-            constructor() {
-                this.adminPassword = 'ian2025blog';
-                this.isAuthenticated = false;
-                this.elements = {};
-                this.init();
+        const PASSWORD = 'ian2025blog';
+        
+        function login() {
+            const password = document.getElementById('password').value;
+            const error = document.getElementById('loginError');
+            
+            if (password === PASSWORD) {
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                localStorage.setItem('blogAuth', 'true');
+            } else {
+                error.textContent = 'Contraseña incorrecta';
+                error.classList.remove('hidden');
+                document.getElementById('password').value = '';
             }
-
-            init() {
-                // Wait for DOM to be ready
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', () => this.setup());
-                } else {
-                    this.setup();
-                }
+        }
+        
+        function logout() {
+            localStorage.removeItem('blogAuth');
+            location.reload();
+        }
+        
+        function generatePost() {
+            const title = document.getElementById('title').value;
+            const slug = document.getElementById('slug').value;
+            const excerpt = document.getElementById('excerpt').value;
+            const category = document.getElementById('category').value;
+            const content = document.getElementById('content').value;
+            const keywords = document.getElementById('keywords').value;
+            
+            if (!title || !slug || !excerpt || !content) {
+                alert('Por favor completa todos los campos obligatorios');
+                return;
             }
-
-            setup() {
-                try {
-                    this.cacheElements();
-                    this.attachEventListeners();
-                    this.checkAuthState();
-                } catch (error) {
-                    console.error('Admin app setup failed:', error);
-                    this.showError('Error al inicializar la aplicación');
-                }
-            }
-
-            cacheElements() {
-                // Cache all DOM elements safely
-                this.elements = {
-                    authSection: document.getElementById('authSection'),
-                    adminPanel: document.getElementById('adminPanel'),
-                    loginForm: document.getElementById('loginForm'),
-                    password: document.getElementById('password'),
-                    errorMessage: document.getElementById('errorMessage'),
-                    successMessage: document.getElementById('successMessage'),
-                    logoutBtn: document.getElementById('logoutBtn'),
-                    postForm: document.getElementById('postForm'),
-                    postTitle: document.getElementById('postTitle'),
-                    postSlug: document.getElementById('postSlug'),
-                    postExcerpt: document.getElementById('postExcerpt'),
-                    postCategory: document.getElementById('postCategory'),
-                    postContent: document.getElementById('postContent'),
-                    postKeywords: document.getElementById('postKeywords'),
-                    generatedCode: document.getElementById('generatedCode'),
-                    postTemplate: document.getElementById('postTemplate'),
-                    copyBtn: document.getElementById('copyBtn'),
-                    postList: document.getElementById('postList')
-                };
-
-                // Verify all critical elements exist
-                const criticalElements = ['authSection', 'adminPanel', 'loginForm', 'password'];
-                for (const key of criticalElements) {
-                    if (!this.elements[key]) {
-                        throw new Error(`Critical element not found: ${key}`);
-                    }
-                }
-            }
-
-            attachEventListeners() {
-                // Login form
-                this.elements.loginForm.addEventListener('submit', (e) => this.handleLogin(e));
-                
-                // Logout button
-                if (this.elements.logoutBtn) {
-                    this.elements.logoutBtn.addEventListener('click', () => this.handleLogout());
-                }
-
-                // Only attach these if we're authenticated or elements exist
-                if (this.elements.postTitle) {
-                    this.elements.postTitle.addEventListener('input', (e) => this.generateSlug(e));
-                }
-
-                if (this.elements.postForm) {
-                    this.elements.postForm.addEventListener('submit', (e) => this.handlePostSubmission(e));
-                }
-
-                if (this.elements.copyBtn) {
-                    this.elements.copyBtn.addEventListener('click', () => this.copyToClipboard());
-                }
-            }
-
-            checkAuthState() {
-                const isLoggedIn = localStorage.getItem('blogAuth') === 'true';
-                if (isLoggedIn) {
-                    this.showAdminPanel();
-                }
-            }
-
-            handleLogin(e) {
-                e.preventDefault();
-                
-                try {
-                    const password = this.elements.password.value;
-                    
-                    if (password === this.adminPassword) {
-                        localStorage.setItem('blogAuth', 'true');
-                        this.showAdminPanel();
-                        this.hideError();
-                    } else {
-                        this.showError('Contraseña incorrecta');
-                        this.elements.password.value = '';
-                        this.elements.password.focus();
-                    }
-                } catch (error) {
-                    console.error('Login error:', error);
-                    this.showError('Error al procesar login');
-                }
-            }
-
-            handleLogout() {
-                try {
-                    localStorage.removeItem('blogAuth');
-                    this.isAuthenticated = false;
-                    location.reload();
-                } catch (error) {
-                    console.error('Logout error:', error);
-                }
-            }
-
-            showAdminPanel() {
-                try {
-                    this.isAuthenticated = true;
-                    this.elements.authSection.classList.add('hidden');
-                    this.elements.adminPanel.classList.remove('hidden');
-                    this.loadPosts();
-                    
-                    // Re-attach event listeners for admin panel elements
-                    this.attachAdminEventListeners();
-                } catch (error) {
-                    console.error('Error showing admin panel:', error);
-                    this.showError('Error al cargar panel de administración');
-                }
-            }
-
-            attachAdminEventListeners() {
-                // These listeners only work when admin panel is visible
-                if (this.elements.postTitle && !this.elements.postTitle.hasAttribute('data-listener')) {
-                    this.elements.postTitle.addEventListener('input', (e) => this.generateSlug(e));
-                    this.elements.postTitle.setAttribute('data-listener', 'true');
-                }
-
-                if (this.elements.postForm && !this.elements.postForm.hasAttribute('data-listener')) {
-                    this.elements.postForm.addEventListener('submit', (e) => this.handlePostSubmission(e));
-                    this.elements.postForm.setAttribute('data-listener', 'true');
-                }
-
-                if (this.elements.copyBtn && !this.elements.copyBtn.hasAttribute('data-listener')) {
-                    this.elements.copyBtn.addEventListener('click', () => this.copyToClipboard());
-                    this.elements.copyBtn.setAttribute('data-listener', 'true');
-                }
-            }
-
-            generateSlug(e) {
-                try {
-                    const title = e.target.value;
-                    const slug = title.toLowerCase()
-                        .replace(/[áàäâ]/g, 'a')
-                        .replace(/[éèëê]/g, 'e')
-                        .replace(/[íìïî]/g, 'i')
-                        .replace(/[óòöô]/g, 'o')
-                        .replace(/[úùüû]/g, 'u')
-                        .replace(/ñ/g, 'n')
-                        .replace(/[^\w\s-]/g, '')
-                        .replace(/\s+/g, '-')
-                        .replace(/-+/g, '-')
-                        .trim();
-                    
-                    if (this.elements.postSlug) {
-                        this.elements.postSlug.value = slug;
-                    }
-                } catch (error) {
-                    console.error('Slug generation error:', error);
-                }
-            }
-
-            handlePostSubmission(e) {
-                e.preventDefault();
-                
-                try {
-                    const formData = this.getFormData();
-                    const postHTML = this.generatePostHTML(formData);
-                    
-                    this.elements.postTemplate.textContent = postHTML;
-                    this.elements.generatedCode.classList.remove('hidden');
-                    this.showSuccess('Post generado exitosamente!');
-                    
-                    // Scroll to generated code
-                    this.elements.generatedCode.scrollIntoView({ behavior: 'smooth' });
-                } catch (error) {
-                    console.error('Post submission error:', error);
-                    this.showError('Error al generar el post');
-                }
-            }
-
-            getFormData() {
-                return {
-                    title: this.elements.postTitle.value,
-                    slug: this.elements.postSlug.value,
-                    excerpt: this.elements.postExcerpt.value,
-                    category: this.elements.postCategory.value,
-                    content: this.elements.postContent.value,
-                    keywords: this.elements.postKeywords.value,
-                    date: new Date().toISOString(),
-                    formattedDate: new Date().toLocaleDateString('es-MX', { 
-                        day: 'numeric', 
-                        month: 'long', 
-                        year: 'numeric' 
-                    })
-                };
-            }
-
-            generatePostHTML(data) {
-                // Simplified template generation to avoid syntax errors
-                const template = this.getPostTemplate();
-                
-                return template
-                    .replace(/\{\{TITLE\}\}/g, this.escapeHtml(data.title))
-                    .replace(/\{\{SLUG\}\}/g, this.escapeHtml(data.slug))
-                    .replace(/\{\{EXCERPT\}\}/g, this.escapeHtml(data.excerpt))
-                    .replace(/\{\{CATEGORY\}\}/g, this.escapeHtml(data.category))
-                    .replace(/\{\{CATEGORY_NAME\}\}/g, this.escapeHtml(this.getCategoryName(data.category)))
-                    .replace(/\{\{CONTENT\}\}/g, data.content) // Don't escape content as it's HTML
-                    .replace(/\{\{KEYWORDS\}\}/g, this.escapeHtml(data.keywords))
-                    .replace(/\{\{DATE\}\}/g, this.escapeHtml(data.date))
-                    .replace(/\{\{FORMATTED_DATE\}\}/g, this.escapeHtml(data.formattedDate))
-                    .replace(/\{\{CATEGORY_VALUE\}\}/g, this.getCategoryValue(data.category));
-            }
-
-            getPostTemplate() {
-                // Return the post template as a simple string to avoid template literal issues
-                return `<!DOCTYPE html>
+            
+            const date = new Date().toISOString();
+            const formattedDate = new Date().toLocaleDateString('es-MX', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+            
+            const categoryNames = {
+                'chatbots': 'Chatbots IA',
+                'desarrollo': 'Desarrollo Web', 
+                'prospeccion': 'Prospección Digital',
+                'tutoriales': 'Tutoriales',
+                'casos': 'Casos de Éxito'
+            };
+            
+            const categoryValues = {
+                'chatbots': 29000,
+                'desarrollo': 15000,
+                'prospeccion': 8000, 
+                'tutoriales': 3000,
+                'casos': 50000
+            };
+            
+            const html = createPostHTML(title, slug, excerpt, category, categoryNames[category], content, keywords, date, formattedDate, categoryValues[category]);
+            
+            document.getElementById('codeOutput').textContent = html;
+            document.getElementById('output').classList.remove('hidden');
+            document.getElementById('success').textContent = 'Código generado exitosamente!';
+            document.getElementById('success').classList.remove('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('success').classList.add('hidden');
+            }, 3000);
+        }
+        
+        function createPostHTML(title, slug, excerpt, category, categoryName, content, keywords, date, formattedDate, categoryValue) {
+            return `<!DOCTYPE html>
 <html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{TITLE}} | iAN Blog</title>
-    <meta name="description" content="{{EXCERPT}}">
+    <title>${title} | iAN Blog</title>
+    <meta name="description" content="${excerpt}">
     
     <!-- SEO Meta Tags -->
-    <meta property="og:title" content="{{TITLE}}">
-    <meta property="og:description" content="{{EXCERPT}}">
+    <meta property="og:title" content="${title}">
+    <meta property="og:description" content="${excerpt}">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://inteligenciaartificialparanegocios.com/blog/posts/{{SLUG}}.html">
-    <meta property="og:locale" content="es_MX">
-    
-    <meta property="article:published_time" content="{{DATE}}">
-    <meta property="article:author" content="iAN - Inteligencia Artificial para Negocios">
-    <meta property="article:section" content="{{CATEGORY_NAME}}">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{TITLE}}">
-    <meta name="twitter:description" content="{{EXCERPT}}">
+    <meta property="og:url" content="https://inteligenciaartificialparanegocios.com/blog/posts/${slug}.html">
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://inteligenciaartificialparanegocios.com/blog/posts/{{SLUG}}.html">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../../assets/favicon/favicon.ico">
+    <link rel="canonical" href="https://inteligenciaartificialparanegocios.com/blog/posts/${slug}.html">
     
     <!-- CSS -->
     <link rel="stylesheet" href="../../css/styles.css">
@@ -773,29 +309,14 @@
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "{{TITLE}}",
-        "description": "{{EXCERPT}}",
-        "datePublished": "{{DATE}}",
-        "dateModified": "{{DATE}}",
+        "headline": "${title}",
+        "description": "${excerpt}",
+        "datePublished": "${date}",
         "author": {
             "@type": "Organization",
-            "name": "iAN - Inteligencia Artificial para Negocios",
-            "url": "https://inteligenciaartificialparanegocios.com"
+            "name": "iAN - Inteligencia Artificial para Negocios"
         },
-        "publisher": {
-            "@type": "Organization",
-            "name": "iAN - Inteligencia Artificial para Negocios",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://inteligenciaartificialparanegocios.com/assets/logo/logo ian.png"
-            }
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://inteligenciaartificialparanegocios.com/blog/posts/{{SLUG}}.html"
-        },
-        "inLanguage": "es-MX",
-        "keywords": "{{KEYWORDS}}"
+        "keywords": "${keywords}"
     }
     </script>
 </head>
@@ -805,88 +326,48 @@
         <div class="container">
             <div class="nav-wrapper">
                 <a href="../../index.html" class="logo">
-                    <img src="../../assets/logo/logo ian.png" alt="iAN - Inteligencia Artificial para Negocios" width="120" height="40" fetchpriority="high">
+                    <img src="../../assets/logo/logo ian.png" alt="iAN Logo" width="120" height="40">
                 </a>
                 <div class="nav-menu">
                     <a href="../../index.html" class="nav-link">Inicio</a>
                     <a href="../../index.html#chatbots" class="nav-link">Chatbots IA</a>
                     <a href="../../index.html#precios" class="nav-link">Precios</a>
-                    <div class="nav-dropdown">
-                        <a href="../../index.html#servicios" class="nav-link dropdown-toggle">Otros Servicios</a>
-                        <div class="dropdown-menu">
-                            <a href="../../desarrollo-web.html" class="dropdown-item">Desarrollo Web</a>
-                            <a href="../../prospeccion-ia.html" class="dropdown-item">Prospección con IA</a>
-                            <a href="../../cursos-ia.html" class="dropdown-item">Cursos de IA</a>
-                        </div>
-                    </div>
                     <a href="../" class="nav-link active">Blog</a>
                     <a href="../../index.html#contacto" class="nav-link cta-button">Aumenta tus Ventas</a>
-                </div>
-                <div class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
                 </div>
             </div>
         </div>
     </nav>
     
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="mobile-menu-content">
-            <a href="../../index.html" class="mobile-link">Inicio</a>
-            <a href="../../index.html#chatbots" class="mobile-link">Chatbots IA</a>
-            <a href="../../index.html#precios" class="mobile-link">Precios</a>
-            <a href="../../desarrollo-web.html" class="mobile-link">Desarrollo Web</a>
-            <a href="../../prospeccion-ia.html" class="mobile-link">Prospección IA</a>
-            <a href="../../cursos-ia.html" class="mobile-link">Cursos</a>
-            <a href="../" class="mobile-link active">Blog</a>
-            <a href="../../index.html#contacto" class="mobile-link cta">Aumenta tus Ventas</a>
-        </div>
-    </div>
-    
     <!-- Article -->
     <article class="article-container">
-        <!-- Breadcrumb -->
         <nav class="breadcrumb">
             <a href="../../index.html">Inicio</a> &gt; 
             <a href="../">Blog</a> &gt; 
-            <span>{{TITLE}}</span>
+            <span>${title}</span>
         </nav>
         
-        <!-- Article Header -->
         <header class="article-header">
             <div class="article-meta">
-                <time datetime="{{DATE}}">{{FORMATTED_DATE}}</time>
+                <time datetime="${date}">${formattedDate}</time>
                 <span>•</span>
                 <span>5 min de lectura</span>
                 <span>•</span>
-                <span>{{CATEGORY_NAME}}</span>
+                <span>${categoryName}</span>
             </div>
-            <h1 class="article-title">{{TITLE}}</h1>
-            <p class="article-excerpt">{{EXCERPT}}</p>
+            <h1 class="article-title">${title}</h1>
+            <p class="article-excerpt">${excerpt}</p>
         </header>
         
-        <!-- Article Content -->
         <div class="article-content">
-            {{CONTENT}}
+            ${content}
         </div>
         
         <!-- CTA Section -->
         <div class="cta-section">
             <h2>¿Listo para implementar IA en tu negocio?</h2>
-            <p>Obtén una consultoría gratuita y descubre cómo la inteligencia artificial puede transformar tu empresa</p>
-            <a href="https://wa.me/528112500801?text=Hola,%20quiero%20información%20sobre%20sus%20servicios%20de%20IA" class="cta-button" style="background: white; color: var(--primary);">
-                Solicitar Consultoría Gratis
-            </a>
-        </div>
-        
-        <!-- Author Bio -->
-        <div class="author-bio">
-            <div class="author-info">
-                <h4>iAN - Inteligencia Artificial para Negocios</h4>
-                <p>Expertos en implementación de soluciones de IA para empresas mexicanas. Transformando negocios con tecnología avanzada.</p>
-            </div>
+            <p>Obtén una consultoría gratuita</p>
+            <a href="https://wa.me/528112500801" class="cta-button">Contactar</a>
         </div>
     </article>
     
@@ -895,203 +376,71 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <img src="../../assets/logo/logo ian.png" alt="iAN" class="footer-logo" width="80" height="27" loading="lazy">
-                    <p>Inteligencia Artificial que impulsa tu negocio al siguiente nivel</p>
+                    <img src="../../assets/logo/logo ian.png" alt="iAN" class="footer-logo">
+                    <p>Inteligencia Artificial para tu negocio</p>
                 </div>
                 <div class="footer-links">
                     <h4>Servicios</h4>
                     <a href="../../index.html#chatbots">Chatbots IA</a>
                     <a href="../../desarrollo-web.html">Desarrollo Web</a>
                     <a href="../../prospeccion-ia.html">Prospección IA</a>
-                    <a href="../../cursos-ia.html">Cursos</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Recursos</h4>
-                    <a href="../../inteligencia-artificial-negocios-mexico.html">🎯 IA para Negocios México</a>
-                    <a href="../../chatbots-ia-vs-tradicionales-roi-mexico.html">Chatbots IA vs Tradicionales</a>
-                    <a href="../../facebook-ads-ia-guia-completa-mexico-2025.html">Facebook Ads + IA</a>
-                    <a href="../">Blog</a>
-                    <a href="../../index.html#contacto">Contacto</a>
                 </div>
                 <div class="footer-contact">
-                    <h4>Contacto Directo</h4>
-                    <a href="tel:+528112500801" class="contact-link">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M2 3C2 2.5 2.5 2 3 2H6L8 7L6 9C7 11 9 13 11 14L13 12L18 14V17C18 17.5 17.5 18 17 18C9 18 2 11 2 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                        </svg>
-                        +52 811 250 0801
-                    </a>
-                    <p>Atención a toda la República Mexicana</p>
+                    <h4>Contacto</h4>
+                    <p>WhatsApp: +52 811 250 0801</p>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Inteligencia Artificial para Negocios. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
-    
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/528112500801?text=Hola,%20quiero%20un%20chatbot%20que%20aumente%20mis%20ventas" 
-       class="whatsapp-float" 
-       target="_blank"
-       aria-label="Contactar por WhatsApp">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="white"/>
-        </svg>
-        <span class="whatsapp-text">¿Listo para vender más?</span>
-    </a>
-    
-    <script>
-        // Mobile menu functionality for generated posts
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        
-        if (mobileToggle && mobileMenu) {
-            mobileToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
-                mobileToggle.classList.toggle('active');
-            });
-        }
-    </script>
 </body>
 </html>`;
-            }
-
-            getCategoryName(category) {
-                const categories = {
-                    'chatbots': 'Chatbots IA',
-                    'desarrollo': 'Desarrollo Web',
-                    'prospeccion': 'Prospección Digital',
-                    'tutoriales': 'Tutoriales',
-                    'casos': 'Casos de Éxito'
-                };
-                return categories[category] || category;
-            }
-
-            getCategoryValue(category) {
-                const values = {
-                    'chatbots': 29000,
-                    'desarrollo': 15000,
-                    'prospeccion': 8000,
-                    'tutoriales': 3000,
-                    'casos': 50000
-                };
-                return values[category] || 10000;
-            }
-
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-
-            copyToClipboard() {
-                try {
-                    const text = this.elements.postTemplate.textContent;
-                    
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(text).then(() => {
-                            this.showSuccess('Código copiado al portapapeles!');
-                        }).catch(() => {
-                            this.fallbackCopy(text);
-                        });
-                    } else {
-                        this.fallbackCopy(text);
-                    }
-                } catch (error) {
-                    console.error('Copy error:', error);
-                    this.showError('Error al copiar código');
-                }
-            }
-
-            fallbackCopy(text) {
-                try {
-                    const textArea = document.createElement('textarea');
-                    textArea.value = text;
-                    textArea.style.position = 'fixed';
-                    textArea.style.left = '-999999px';
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    
-                    try {
-                        const successful = document.execCommand('copy');
-                        if (successful) {
-                            this.showSuccess('Código copiado al portapapeles!');
-                        } else {
-                            this.showError('No se pudo copiar automáticamente');
-                        }
-                    } catch (err) {
-                        this.showError('No se pudo copiar automáticamente');
-                    }
-                    
-                    document.body.removeChild(textArea);
-                } catch (error) {
-                    console.error('Fallback copy error:', error);
-                    this.showError('Error al copiar código');
-                }
-            }
-
-            loadPosts() {
-                try {
-                    const posts = [
-                        { 
-                            title: 'Cómo implementar un chatbot IA en tu negocio mexicano', 
-                            slug: 'implementar-chatbot-ia-negocio-mexicano' 
-                        }
-                    ];
-                    
-                    if (this.elements.postList) {
-                        this.elements.postList.innerHTML = posts.map(post => `
-                            <div class="post-item">
-                                <div>
-                                    <strong>${this.escapeHtml(post.title)}</strong><br>
-                                    <small>/blog/posts/${this.escapeHtml(post.slug)}.html</small>
-                                </div>
-                                <a href="posts/${this.escapeHtml(post.slug)}.html" target="_blank">Ver</a>
-                            </div>
-                        `).join('');
-                    }
-                } catch (error) {
-                    console.error('Error loading posts:', error);
-                }
-            }
-
-            showError(message) {
-                if (this.elements.errorMessage) {
-                    this.elements.errorMessage.textContent = message;
-                    this.elements.errorMessage.style.display = 'block';
-                    
-                    // Auto-hide after 5 seconds
-                    setTimeout(() => this.hideError(), 5000);
-                }
-            }
-
-            hideError() {
-                if (this.elements.errorMessage) {
-                    this.elements.errorMessage.style.display = 'none';
-                }
-            }
-
-            showSuccess(message) {
-                if (this.elements.successMessage) {
-                    this.elements.successMessage.textContent = message;
-                    this.elements.successMessage.style.display = 'block';
-                    
-                    // Auto-hide after 3 seconds
-                    setTimeout(() => this.hideSuccess(), 3000);
-                }
-            }
-
-            hideSuccess() {
-                if (this.elements.successMessage) {
-                    this.elements.successMessage.style.display = 'none';
-                }
-            }
         }
-
-        // Initialize the admin app
-        new AdminApp();
+        
+        function copyCode() {
+            const code = document.getElementById('codeOutput').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Código copiado al portapapeles!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = code;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Código copiado!');
+            });
+        }
+        
+        // Auto-generate slug from title
+        document.getElementById('title').addEventListener('input', function(e) {
+            const title = e.target.value;
+            const slug = title.toLowerCase()
+                .replace(/[áàäâ]/g, 'a')
+                .replace(/[éèëê]/g, 'e') 
+                .replace(/[íìïî]/g, 'i')
+                .replace(/[óòöô]/g, 'o')
+                .replace(/[úùüû]/g, 'u')
+                .replace(/ñ/g, 'n')
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .trim();
+            document.getElementById('slug').value = slug;
+        });
+        
+        // Check if already logged in
+        if (localStorage.getItem('blogAuth') === 'true') {
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('adminPanel').classList.remove('hidden');
+        }
+        
+        // Enter key on password field
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
     </script>
 </body>
 </html>
