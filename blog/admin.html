@@ -6,88 +6,102 @@
     <title>Admin Blog - iAN</title>
     <meta name="robots" content="noindex, nofollow">
     
+    <!-- Disable main site CSS -->
+    <style>
+        /* DISABLE ALL EXTERNAL CSS */
+        html, body {
+            all: unset !important;
+            display: block !important;
+        }
+    </style>
+    
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+            min-height: 100vh !important;
+            color: #000 !important;
         }
         
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            max-width: 800px !important;
+            margin: 0 auto !important;
+            padding: 40px 20px !important;
         }
         
         .card {
-            background: white;
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: white !important;
+            border-radius: 16px !important;
+            padding: 32px !important;
+            margin-bottom: 24px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
         }
         
         h1 {
-            color: #4F46E5;
-            margin-bottom: 24px;
-            text-align: center;
+            color: #4F46E5 !important;
+            margin-bottom: 24px !important;
+            text-align: center !important;
+            font-size: 2rem !important;
+            font-weight: 700 !important;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 20px !important;
         }
         
         label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #374151;
+            display: block !important;
+            margin-bottom: 8px !important;
+            font-weight: 600 !important;
+            color: #374151 !important;
+            font-size: 1rem !important;
         }
         
         input, textarea, select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 16px;
+            width: 100% !important;
+            padding: 12px !important;
+            border: 2px solid #e5e7eb !important;
+            border-radius: 8px !important;
+            font-size: 16px !important;
             color: #374151 !important;
             background: white !important;
+            font-family: inherit !important;
         }
         
         input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: #4F46E5;
+            outline: none !important;
+            border-color: #4F46E5 !important;
         }
         
         textarea {
-            min-height: 200px;
-            font-family: monospace;
+            min-height: 200px !important;
+            font-family: monospace !important;
         }
         
         button {
-            background: #4F46E5;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
+            background: #4F46E5 !important;
+            color: white !important;
+            padding: 12px 24px !important;
+            border: none !important;
+            border-radius: 8px !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            width: 100% !important;
         }
         
         button:hover {
-            background: #4338CA;
+            background: #4338CA !important;
         }
         
         .hidden {
-            display: none;
+            display: none !important;
         }
         
         .success {
