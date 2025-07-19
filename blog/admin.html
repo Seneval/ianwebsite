@@ -1,437 +1,107 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Blog - iAN</title>
-    <meta name="robots" content="noindex, nofollow">
-    
-    <!-- Disable main site CSS -->
-    <style>
-        /* DISABLE ALL EXTERNAL CSS */
-        html, body {
-            all: unset !important;
-            display: block !important;
-        }
-    </style>
-    
-    <style>
-        * {
-            margin: 0 !important;
-            padding: 0 !important;
-            box-sizing: border-box !important;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
-            min-height: 100vh !important;
-            color: #000 !important;
-        }
-        
-        .container {
-            max-width: 800px !important;
-            margin: 0 auto !important;
-            padding: 40px 20px !important;
-        }
-        
-        .card {
-            background: white !important;
-            border-radius: 16px !important;
-            padding: 32px !important;
-            margin-bottom: 24px !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-        }
-        
-        h1 {
-            color: #4F46E5 !important;
-            margin-bottom: 24px !important;
-            text-align: center !important;
-            font-size: 2rem !important;
-            font-weight: 700 !important;
-        }
-        
-        .form-group {
-            margin-bottom: 20px !important;
-        }
-        
-        label {
-            display: block !important;
-            margin-bottom: 8px !important;
-            font-weight: 600 !important;
-            color: #374151 !important;
-            font-size: 1rem !important;
-        }
-        
-        input, textarea, select {
-            width: 100% !important;
-            padding: 12px !important;
-            border: 2px solid #e5e7eb !important;
-            border-radius: 8px !important;
-            font-size: 16px !important;
-            color: #374151 !important;
-            background: white !important;
-            font-family: inherit !important;
-        }
-        
-        input:focus, textarea:focus, select:focus {
-            outline: none !important;
-            border-color: #4F46E5 !important;
-        }
-        
-        textarea {
-            min-height: 200px !important;
-            font-family: monospace !important;
-        }
-        
-        button {
-            background: #4F46E5 !important;
-            color: white !important;
-            padding: 12px 24px !important;
-            border: none !important;
-            border-radius: 8px !important;
-            font-size: 16px !important;
-            font-weight: 600 !important;
-            cursor: pointer !important;
-            width: 100% !important;
-        }
-        
-        button:hover {
-            background: #4338CA !important;
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        .success {
-            background: #10B981;
-            color: white;
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-        
-        .error {
-            background: #EF4444;
-            color: white;
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-        
-        .code-output {
-            background: #1f2937;
-            color: #f9fafb;
-            padding: 16px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 14px;
-            white-space: pre-wrap;
-            max-height: 400px;
-            overflow-y: auto;
-            margin-top: 16px;
-        }
-        
-        .help {
-            font-size: 14px;
-            color: #6b7280;
-            margin-top: 4px;
-        }
-    </style>
+    <title>Admin - iAN</title>
+    <meta name="robots" content="noindex">
 </head>
-
-<body>
-    <!-- Login Section -->
-    <div id="loginSection" class="container">
-        <div class="card">
-            <h1>Admin Blog - iAN</h1>
-            <div id="loginError" class="error hidden"></div>
-            <div class="form-group">
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" placeholder="Ingresa la contraseña">
-            </div>
-            <button onclick="login()">Ingresar</button>
+<body style="margin:0;padding:0;font-family:Arial;background:#f0f0f0;min-height:100vh;">
+    
+    <!-- Login -->
+    <div id="login" style="max-width:400px;margin:100px auto;background:white;padding:40px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <h1 style="color:#4F46E5;text-align:center;margin-bottom:30px;">Admin Blog</h1>
+        <div id="error" style="background:#ff4444;color:white;padding:10px;margin-bottom:20px;border-radius:5px;display:none;"></div>
+        <div style="margin-bottom:20px;">
+            <label style="display:block;margin-bottom:8px;font-weight:bold;">Contraseña:</label>
+            <input type="password" id="pass" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;" onkeypress="if(event.key==='Enter')doLogin()">
         </div>
+        <button onclick="doLogin()" style="width:100%;padding:12px;background:#4F46E5;color:white;border:none;border-radius:5px;font-size:16px;cursor:pointer;">Ingresar</button>
     </div>
 
     <!-- Admin Panel -->
-    <div id="adminPanel" class="container hidden">
-        <div class="card">
-            <h1>Crear Nuevo Post</h1>
-            <button onclick="logout()" style="width: auto; float: right; background: #EF4444;">Salir</button>
-            <div style="clear: both;"></div>
-            
-            <div id="success" class="success hidden"></div>
-            
-            <div class="form-group">
-                <label for="title">Título del Post:</label>
-                <input type="text" id="title" placeholder="Ejemplo: Cómo implementar un chatbot IA">
-                <div class="help">Este será el título principal del artículo</div>
-            </div>
-            
-            <div class="form-group">
-                <label for="slug">URL Slug:</label>
-                <input type="text" id="slug" placeholder="ejemplo-chatbot-ia-negocio">
-                <div class="help">Solo letras, números y guiones (sin .html)</div>
-            </div>
-            
-            <div class="form-group">
-                <label for="excerpt">Resumen:</label>
-                <textarea id="excerpt" rows="3" placeholder="Breve descripción del post..."></textarea>
-                <div class="help">Máximo 160 caracteres para SEO</div>
-            </div>
-            
-            <div class="form-group">
-                <label for="category">Categoría:</label>
-                <select id="category">
-                    <option value="chatbots">Chatbots IA</option>
-                    <option value="desarrollo">Desarrollo Web</option>
-                    <option value="prospeccion">Prospección Digital</option>
-                    <option value="tutoriales">Tutoriales</option>
-                    <option value="casos">Casos de Éxito</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="content">Contenido HTML:</label>
-                <textarea id="content" placeholder="<p>Contenido del artículo en HTML...</p>"></textarea>
-                <div class="help">Pega aquí el HTML del contenido (sin etiquetas html, head, body)</div>
-            </div>
-            
-            <div class="form-group">
-                <label for="keywords">Keywords SEO:</label>
-                <input type="text" id="keywords" placeholder="chatbot ia mexico, implementar chatbot">
-                <div class="help">Separadas por comas</div>
-            </div>
-            
-            <button onclick="generatePost()">Generar Código del Post</button>
-            
-            <div id="output" class="hidden">
-                <h3 style="margin-top: 24px; margin-bottom: 16px;">Código Generado:</h3>
-                <div id="codeOutput" class="code-output"></div>
-                <button onclick="copyCode()" style="margin-top: 16px;">Copiar Código</button>
-                <div class="help" style="margin-top: 8px;">
-                    Instrucciones:<br>
-                    1. Copia este código<br>
-                    2. Crea archivo: blog/posts/[slug].html<br>
-                    3. Pega el código y guarda<br>
-                    4. Actualiza blog/index.html agregando el post al array<br>
-                    5. Haz commit y push
-                </div>
+    <div id="admin" style="display:none;max-width:800px;margin:20px auto;background:white;padding:40px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;">
+            <h1 style="color:#4F46E5;margin:0;">Crear Post</h1>
+            <button onclick="doLogout()" style="padding:8px 16px;background:#ff4444;color:white;border:none;border-radius:5px;cursor:pointer;">Salir</button>
+        </div>
+        
+        <div id="success" style="background:#22c55e;color:white;padding:10px;margin-bottom:20px;border-radius:5px;display:none;"></div>
+        
+        <div style="margin-bottom:20px;">
+            <label style="display:block;margin-bottom:8px;font-weight:bold;">Título:</label>
+            <input type="text" id="title" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;" oninput="makeSlug()">
+        </div>
+        
+        <div style="margin-bottom:20px;">
+            <label style="display:block;margin-bottom:8px;font-weight:bold;">URL Slug:</label>
+            <input type="text" id="slug" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;">
+        </div>
+        
+        <div style="margin-bottom:20px;">
+            <label style="display:block;margin-bottom:8px;font-weight:bold;">Resumen:</label>
+            <textarea id="excerpt" rows="3" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;"></textarea>
+        </div>
+        
+        <div style="margin-bottom:20px;">
+            <label style="display:block;margin-bottom:8px;font-weight:bold;">Categoría:</label>
+            <select id="category" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;">
+                <option value="chatbots">Chatbots IA</option>
+                <option value="desarrollo">Desarrollo Web</option>
+                <option value="prospeccion">Prospección Digital</option>
+                <option value="tutoriales">Tutoriales</option>
+                <option value="casos">Casos de Éxito</option>
+            </select>
+        </div>
+        
+        <div style="margin-bottom:20px;">
+            <label style="display:block;margin-bottom:8px;font-weight:bold;">Contenido HTML:</label>
+            <textarea id="content" rows="10" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:14px;font-family:monospace;"></textarea>
+        </div>
+        
+        <div style="margin-bottom:20px;">
+            <label style="display:block;margin-bottom:8px;font-weight:bold;">Keywords:</label>
+            <input type="text" id="keywords" style="width:100%;padding:12px;border:2px solid #ddd;border-radius:5px;font-size:16px;">
+        </div>
+        
+        <button onclick="makePost()" style="width:100%;padding:12px;background:#4F46E5;color:white;border:none;border-radius:5px;font-size:16px;cursor:pointer;margin-bottom:20px;">Generar Post</button>
+        
+        <div id="output" style="display:none;">
+            <h3 style="margin-bottom:15px;">Código Generado:</h3>
+            <div id="code" style="background:#1f2937;color:#f9fafb;padding:15px;border-radius:5px;font-family:monospace;font-size:12px;white-space:pre-wrap;max-height:300px;overflow-y:auto;"></div>
+            <button onclick="copyCode()" style="width:100%;padding:10px;background:#22c55e;color:white;border:none;border-radius:5px;font-size:14px;cursor:pointer;margin-top:10px;">Copiar Código</button>
+            <div style="margin-top:10px;font-size:14px;color:#666;">
+                1. Copia el código<br>
+                2. Crea archivo: blog/posts/[slug].html<br>
+                3. Actualiza blog/index.html<br>
+                4. Commit y push
             </div>
         </div>
     </div>
 
     <script>
-        const PASSWORD = 'ian2025blog';
-        
-        function login() {
-            const password = document.getElementById('password').value;
-            const error = document.getElementById('loginError');
-            
-            if (password === PASSWORD) {
-                document.getElementById('loginSection').classList.add('hidden');
-                document.getElementById('adminPanel').classList.remove('hidden');
+        function doLogin() {
+            var pass = document.getElementById('pass').value;
+            if (pass === 'ian2025blog') {
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('admin').style.display = 'block';
                 localStorage.setItem('blogAuth', 'true');
             } else {
-                error.textContent = 'Contraseña incorrecta';
-                error.classList.remove('hidden');
-                document.getElementById('password').value = '';
+                var err = document.getElementById('error');
+                err.textContent = 'Contraseña incorrecta';
+                err.style.display = 'block';
+                document.getElementById('pass').value = '';
             }
         }
         
-        function logout() {
+        function doLogout() {
             localStorage.removeItem('blogAuth');
             location.reload();
         }
         
-        function generatePost() {
-            const title = document.getElementById('title').value;
-            const slug = document.getElementById('slug').value;
-            const excerpt = document.getElementById('excerpt').value;
-            const category = document.getElementById('category').value;
-            const content = document.getElementById('content').value;
-            const keywords = document.getElementById('keywords').value;
-            
-            if (!title || !slug || !excerpt || !content) {
-                alert('Por favor completa todos los campos obligatorios');
-                return;
-            }
-            
-            const date = new Date().toISOString();
-            const formattedDate = new Date().toLocaleDateString('es-MX', { 
-                day: 'numeric', 
-                month: 'long', 
-                year: 'numeric' 
-            });
-            
-            const categoryNames = {
-                'chatbots': 'Chatbots IA',
-                'desarrollo': 'Desarrollo Web', 
-                'prospeccion': 'Prospección Digital',
-                'tutoriales': 'Tutoriales',
-                'casos': 'Casos de Éxito'
-            };
-            
-            const categoryValues = {
-                'chatbots': 29000,
-                'desarrollo': 15000,
-                'prospeccion': 8000, 
-                'tutoriales': 3000,
-                'casos': 50000
-            };
-            
-            const html = createPostHTML(title, slug, excerpt, category, categoryNames[category], content, keywords, date, formattedDate, categoryValues[category]);
-            
-            document.getElementById('codeOutput').textContent = html;
-            document.getElementById('output').classList.remove('hidden');
-            document.getElementById('success').textContent = 'Código generado exitosamente!';
-            document.getElementById('success').classList.remove('hidden');
-            
-            setTimeout(() => {
-                document.getElementById('success').classList.add('hidden');
-            }, 3000);
-        }
-        
-        function createPostHTML(title, slug, excerpt, category, categoryName, content, keywords, date, formattedDate, categoryValue) {
-            return `<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title} | iAN Blog</title>
-    <meta name="description" content="${excerpt}">
-    
-    <!-- SEO Meta Tags -->
-    <meta property="og:title" content="${title}">
-    <meta property="og:description" content="${excerpt}">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://inteligenciaartificialparanegocios.com/blog/posts/${slug}.html">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://inteligenciaartificialparanegocios.com/blog/posts/${slug}.html">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="../../css/styles.css">
-    <link rel="stylesheet" href="../css/blog-optimized.css">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "${title}",
-        "description": "${excerpt}",
-        "datePublished": "${date}",
-        "author": {
-            "@type": "Organization",
-            "name": "iAN - Inteligencia Artificial para Negocios"
-        },
-        "keywords": "${keywords}"
-    }
-    </script>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="../../index.html" class="logo">
-                    <img src="../../assets/logo/logo ian.png" alt="iAN Logo" width="120" height="40">
-                </a>
-                <div class="nav-menu">
-                    <a href="../../index.html" class="nav-link">Inicio</a>
-                    <a href="../../index.html#chatbots" class="nav-link">Chatbots IA</a>
-                    <a href="../../index.html#precios" class="nav-link">Precios</a>
-                    <a href="../" class="nav-link active">Blog</a>
-                    <a href="../../index.html#contacto" class="nav-link cta-button">Aumenta tus Ventas</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Article -->
-    <article class="article-container">
-        <nav class="breadcrumb">
-            <a href="../../index.html">Inicio</a> &gt; 
-            <a href="../">Blog</a> &gt; 
-            <span>${title}</span>
-        </nav>
-        
-        <header class="article-header">
-            <div class="article-meta">
-                <time datetime="${date}">${formattedDate}</time>
-                <span>•</span>
-                <span>5 min de lectura</span>
-                <span>•</span>
-                <span>${categoryName}</span>
-            </div>
-            <h1 class="article-title">${title}</h1>
-            <p class="article-excerpt">${excerpt}</p>
-        </header>
-        
-        <div class="article-content">
-            ${content}
-        </div>
-        
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <h2>¿Listo para implementar IA en tu negocio?</h2>
-            <p>Obtén una consultoría gratuita</p>
-            <a href="https://wa.me/528112500801" class="cta-button">Contactar</a>
-        </div>
-    </article>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="../../assets/logo/logo ian.png" alt="iAN" class="footer-logo">
-                    <p>Inteligencia Artificial para tu negocio</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Servicios</h4>
-                    <a href="../../index.html#chatbots">Chatbots IA</a>
-                    <a href="../../desarrollo-web.html">Desarrollo Web</a>
-                    <a href="../../prospeccion-ia.html">Prospección IA</a>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contacto</h4>
-                    <p>WhatsApp: +52 811 250 0801</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>`;
-        }
-        
-        function copyCode() {
-            const code = document.getElementById('codeOutput').textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                alert('Código copiado al portapapeles!');
-            }).catch(() => {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = code;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                alert('Código copiado!');
-            });
-        }
-        
-        // Auto-generate slug from title
-        document.getElementById('title').addEventListener('input', function(e) {
-            const title = e.target.value;
-            const slug = title.toLowerCase()
+        function makeSlug() {
+            var title = document.getElementById('title').value;
+            var slug = title.toLowerCase()
                 .replace(/[áàäâ]/g, 'a')
-                .replace(/[éèëê]/g, 'e') 
+                .replace(/[éèëê]/g, 'e')
                 .replace(/[íìïî]/g, 'i')
                 .replace(/[óòöô]/g, 'o')
                 .replace(/[úùüû]/g, 'u')
@@ -441,20 +111,72 @@
                 .replace(/-+/g, '-')
                 .trim();
             document.getElementById('slug').value = slug;
-        });
-        
-        // Check if already logged in
-        if (localStorage.getItem('blogAuth') === 'true') {
-            document.getElementById('loginSection').classList.add('hidden');
-            document.getElementById('adminPanel').classList.remove('hidden');
         }
         
-        // Enter key on password field
-        document.getElementById('password').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                login();
+        function makePost() {
+            var title = document.getElementById('title').value;
+            var slug = document.getElementById('slug').value;
+            var excerpt = document.getElementById('excerpt').value;
+            var category = document.getElementById('category').value;
+            var content = document.getElementById('content').value;
+            var keywords = document.getElementById('keywords').value;
+            
+            if (!title || !slug || !excerpt || !content) {
+                alert('Completa todos los campos');
+                return;
             }
-        });
+            
+            var date = new Date().toISOString();
+            var formattedDate = new Date().toLocaleDateString('es-MX', { 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            });
+            
+            var categoryNames = {
+                'chatbots': 'Chatbots IA',
+                'desarrollo': 'Desarrollo Web',
+                'prospeccion': 'Prospección Digital',
+                'tutoriales': 'Tutoriales',
+                'casos': 'Casos de Éxito'
+            };
+            
+            // Simple string concatenation - NO template literals
+            var html = '<!DOCTYPE html>\n<html lang="es-MX">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + title + ' | iAN Blog</title>\n    <meta name="description" content="' + excerpt + '">\n    \n    <!-- SEO Meta Tags -->\n    <meta property="og:title" content="' + title + '">\n    <meta property="og:description" content="' + excerpt + '">\n    <meta property="og:type" content="article">\n    <meta property="og:url" content="https://inteligenciaartificialparanegocios.com/blog/posts/' + slug + '.html">\n    \n    <!-- CSS -->\n    <link rel="stylesheet" href="../../css/styles.css">\n    <link rel="stylesheet" href="../css/blog-optimized.css">\n    \n    <!-- Structured Data -->\n    <script type="application/ld+json">\n    {\n        "@context": "https://schema.org",\n        "@type": "Article",\n        "headline": "' + title + '",\n        "description": "' + excerpt + '",\n        "datePublished": "' + date + '",\n        "author": {\n            "@type": "Organization",\n            "name": "iAN - Inteligencia Artificial para Negocios"\n        },\n        "keywords": "' + keywords + '"\n    }\n    </script>\n</head>\n<body>\n    <!-- Navigation -->\n    <nav class="navbar">\n        <div class="container">\n            <div class="nav-wrapper">\n                <a href="../../index.html" class="logo">\n                    <img src="../../assets/logo/logo ian.png" alt="iAN Logo" width="120" height="40">\n                </a>\n                <div class="nav-menu">\n                    <a href="../../index.html" class="nav-link">Inicio</a>\n                    <a href="../../index.html#chatbots" class="nav-link">Chatbots IA</a>\n                    <a href="../../index.html#precios" class="nav-link">Precios</a>\n                    <a href="../" class="nav-link active">Blog</a>\n                    <a href="../../index.html#contacto" class="nav-link cta-button">Aumenta tus Ventas</a>\n                </div>\n            </div>\n        </div>\n    </nav>\n    \n    <!-- Article -->\n    <article class="article-container">\n        <nav class="breadcrumb">\n            <a href="../../index.html">Inicio</a> &gt; \n            <a href="../">Blog</a> &gt; \n            <span>' + title + '</span>\n        </nav>\n        \n        <header class="article-header">\n            <div class="article-meta">\n                <time datetime="' + date + '">' + formattedDate + '</time>\n                <span>•</span>\n                <span>5 min de lectura</span>\n                <span>•</span>\n                <span>' + categoryNames[category] + '</span>\n            </div>\n            <h1 class="article-title">' + title + '</h1>\n            <p class="article-excerpt">' + excerpt + '</p>\n        </header>\n        \n        <div class="article-content">\n            ' + content + '\n        </div>\n        \n        <!-- CTA Section -->\n        <div class="cta-section">\n            <h2>¿Listo para implementar IA en tu negocio?</h2>\n            <p>Obtén una consultoría gratuita</p>\n            <a href="https://wa.me/528112500801" class="cta-button">Contactar</a>\n        </div>\n    </article>\n    \n    <!-- Footer -->\n    <footer class="footer">\n        <div class="container">\n            <div class="footer-content">\n                <div class="footer-brand">\n                    <img src="../../assets/logo/logo ian.png" alt="iAN" class="footer-logo">\n                    <p>Inteligencia Artificial para tu negocio</p>\n                </div>\n                <div class="footer-links">\n                    <h4>Servicios</h4>\n                    <a href="../../index.html#chatbots">Chatbots IA</a>\n                    <a href="../../desarrollo-web.html">Desarrollo Web</a>\n                    <a href="../../prospeccion-ia.html">Prospección IA</a>\n                </div>\n                <div class="footer-contact">\n                    <h4>Contacto</h4>\n                    <p>WhatsApp: +52 811 250 0801</p>\n                </div>\n            </div>\n        </div>\n    </footer>\n</body>\n</html>';
+            
+            document.getElementById('code').textContent = html;
+            document.getElementById('output').style.display = 'block';
+            
+            var success = document.getElementById('success');
+            success.textContent = 'Código generado exitosamente!';
+            success.style.display = 'block';
+            setTimeout(function() {
+                success.style.display = 'none';
+            }, 3000);
+        }
+        
+        function copyCode() {
+            var code = document.getElementById('code').textContent;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(code).then(function() {
+                    alert('Código copiado!');
+                });
+            } else {
+                var textArea = document.createElement('textarea');
+                textArea.value = code;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Código copiado!');
+            }
+        }
+        
+        // Check auth
+        if (localStorage.getItem('blogAuth') === 'true') {
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('admin').style.display = 'block';
+        }
     </script>
 </body>
 </html>
