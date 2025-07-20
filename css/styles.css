@@ -1710,24 +1710,7 @@ section {
     font-weight: 600;
 }
 
-/* Mobile Menu Styles */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 85%;
-    max-width: 350px;
-    height: 100vh;
-    background: var(--white);
-    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-    transition: right var(--transition-normal);
-    z-index: 1001;
-    overflow-y: auto;
-}
-
-.mobile-menu.active {
-    right: 0;
-}
+/* Mobile Menu Styles - CONSOLIDATED TO END OF FILE */
 
 .mobile-menu-content {
     padding: 80px 30px 30px;
@@ -3373,15 +3356,24 @@ input, textarea, select {
     opacity: 1;
 }
 
-/* Mobile menu optimization */
+/* Mobile menu optimization - FIXED: Ensure proper hiding */
 .mobile-menu {
     contain: layout style;
-    transform: translateX(-100%);
-    transition: transform 0.25s ease;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 350px;
+    height: 100vh;
+    background: var(--white);
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    transition: right 0.25s ease;
+    z-index: 1001;
+    overflow-y: auto;
 }
 
 .mobile-menu.active {
-    transform: translateX(0);
+    right: 0;
 }
 
 /* Image optimization classes */
