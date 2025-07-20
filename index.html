@@ -17,17 +17,183 @@
     <link rel="preload" href="css/styles.css" as="style">
     <link rel="preload" href="assets/logo/logo-80.webp" as="image" fetchpriority="high">
     
-    <!-- Font Optimization with font-display: swap -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Self-hosted Fonts for Better Performance -->
+    <link rel="preload" href="fonts/inter-400.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="fonts/inter-500.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="fonts/inter-600.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="css/fonts.css">
     
     <!-- Performance: Preconnect to external domains for faster resource loading -->
     <link rel="preconnect" href="https://connect.facebook.net">
     <link rel="preconnect" href="https://www.facebook.com">
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Critical CSS Inlined for Faster FCP -->
+    <style>
+/* Critical Above-the-Fold CSS - Inline for faster FCP */
+:root {
+    --primary-purple: #6B46C1;
+    --primary-dark-purple: #553C9A;
+    --primary-yellow: #FFBA08;
+    --primary-turquoise: #00D9FF;
+    --dark-navy: #1A202C;
+    --dark-secondary: #2D3748;
+    --gray-light: #F7FAFC;
+    --gray-medium: #E2E8F0;
+    --white: #FFFFFF;
+    --black: #000000;
+    --gradient-primary: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-turquoise) 100%);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-navy);
+    overflow-x: hidden;
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Critical Navigation Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-sm);
+    z-index: 1000;
+    transition: all var(--transition-normal);
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo img {
+    height: 70px;
+    width: auto;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark-navy);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.nav-link.cta-button {
+    background: var(--gradient-primary);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    transition: transform var(--transition-fast);
+}
+
+/* Critical Hero Section */
+.hero-section {
+    min-height: 100vh;
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--white);
+    color: var(--primary-purple);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all var(--transition-normal);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure visibility of animated elements */
+.animate-on-scroll,
+.stagger-animation > *,
+.scale-in,
+.fade-in {
+    opacity: 1;
+    visibility: visible;
+}
+
+section {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+}
+
+/* Mobile Navigation - Critical */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+}
+    </style>
+    
+    <!-- Deferred Stylesheets for Non-Critical CSS -->
+    <link rel="preload" href="css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/styles.css"></noscript>
     <link rel="stylesheet" href="css/animations.css" media="print" onload="this.media='all'; this.onload=null;">
     
     <!-- Organization Schema for Brand Recognition -->
