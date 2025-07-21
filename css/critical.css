@@ -84,13 +84,10 @@ body {
 
 /* Critical Hero Section */
 .hero-section {
-    min-height: 100vh;
+    padding: 140px 0 60px;
     background: var(--gradient-primary);
-    display: flex;
-    align-items: center;
     position: relative;
     overflow: hidden;
-    padding-top: 100px;
 }
 
 .hero-content {
