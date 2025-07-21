@@ -55,6 +55,37 @@ body {
     color: #374151;
 }
 
+.article-header-content {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.article-header-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 1rem 0;
+    color: #111827;
+}
+
+.article-subtitle {
+    font-size: 1.25rem;
+    color: #6B7280;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.article-meta-inline {
+    font-size: 0.875rem;
+    color: #6B7280;
+    margin-bottom: 1rem;
+}
+
+.article-meta-inline span {
+    margin: 0 0.25rem;
+}
+
 .article-body h2 {
     font-size: 2rem;
     font-weight: 700;
