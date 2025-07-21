@@ -22,9 +22,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../../css/critical.css">
     <link rel="stylesheet" href="../../css/styles.css">
-    <link rel="stylesheet" href="../../css/animations.css">
+    <link rel="stylesheet" href="../css/blog-optimized.css">
     
     <!-- Article Schema for AI Overviews -->
     <script type="application/ld+json">
@@ -126,17 +125,43 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="blog-nav">
+    <nav class="navbar">
         <div class="container">
-            <a href="../../" class="nav-brand">
-                <picture>
-                    <source srcset="../../assets/logo/logo-80.webp 1x, ../../assets/logo/logo-160.webp 2x" type="image/webp">
-                    <img src="../../assets/logo/logo-80.png" alt="iAN" width="80" height="27" loading="eager">
-                </picture>
-            </a>
-            <div class="nav-links">
-                <a href="../" class="nav-link">← Volver al Blog</a>
-                <a href="../../#contacto" class="nav-cta">Consulta Gratis</a>
+            <div class="nav-wrapper">
+                <a href="../../index.html" class="logo">
+                    <picture>
+                        <source media="(min-width: 768px)" 
+                                srcset="../../assets/logo/logo-80.webp 1x, ../../assets/logo/logo-160.webp 2x" 
+                                type="image/webp">
+                        <source media="(min-width: 768px)" 
+                                srcset="../../assets/logo/logo-80.png 1x, ../../assets/logo/logo-160.png 2x" 
+                                type="image/png">
+                        <source srcset="../../assets/logo/logo-40.webp 1x, ../../assets/logo/logo-80.webp 2x" 
+                                type="image/webp">
+                        <source srcset="../../assets/logo/logo-40.png 1x, ../../assets/logo/logo-80.png 2x" 
+                                type="image/png">
+                        <img src="../../assets/logo/logo-80.png" 
+                             alt="iAN - Inteligencia Artificial para Negocios" 
+                             width="80" 
+                             height="27"
+                             loading="eager"
+                             fetchpriority="high">
+                    </picture>
+                </a>
+                <div class="nav-menu">
+                    <a href="../../index.html" class="nav-link">Inicio</a>
+                    <a href="../../chatbots-ia.html" class="nav-link">Chatbots IA</a>
+                    <a href="../../precios.html" class="nav-link">Precios</a>
+                    <a href="../index.html" class="nav-link">Blog</a>
+                    <a href="../../index.html#contacto" class="cta-button" style="--cta-base: var(--primary); --cta-hover: var(--primary-dark);">
+                        Aumenta tus Ventas
+                    </a>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
