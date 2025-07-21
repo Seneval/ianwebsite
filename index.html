@@ -144,9 +144,10 @@ body {
 .primary-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     background: var(--white);
-    color: var(--primary-purple) !important;
+    color: var(--primary-purple);
     padding: 1rem 2rem;
     border-radius: 50px;
     text-decoration: none;
@@ -156,16 +157,12 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-.primary-button span {
-    color: var(--primary-purple) !important;
-}
-
 .secondary-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
     background: transparent;
-    color: var(--white) !important;
+    color: var(--white);
     border: 2px solid var(--white);
     padding: 1rem 2rem;
     border-radius: 50px;
@@ -173,11 +170,6 @@ body {
     font-weight: 600;
     font-size: 1.1rem;
     transition: all var(--transition-normal);
-}
-
-.secondary-button:hover {
-    background: var(--white);
-    color: var(--primary-purple) !important;
 }
 
 /* Hero Layout Styles */
