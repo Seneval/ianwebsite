@@ -227,7 +227,8 @@
                 excerpt: "Guía completa para integrar chatbots inteligentes que aumentan ventas y mejoran la atención al cliente 24/7.",
                 date: "18 Julio 2025",
                 category: "chatbots",
-                icon: '<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="60" rx="12" fill="url(#chat-gradient)"/><path d="M30 15C22.268 15 16 20.507 16 27.308C16 30.713 17.469 33.808 19.875 36.077C19.875 36.077 19.5 41.5 19 43C21.5 42 24.5 40 24.5 40C26.197 40.539 28.056 40.846 30 40.846C37.732 40.846 44 35.339 44 28.538C44 21.737 37.732 15 30 15Z" fill="white" opacity="0.9"/><circle cx="23" cy="28" r="2" fill="url(#chat-gradient)"/><circle cx="30" cy="28" r="2" fill="url(#chat-gradient)"/><circle cx="37" cy="28" r="2" fill="url(#chat-gradient)"/><defs><linearGradient id="chat-gradient" x1="0" y1="0" x2="60" y2="60"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#4F46E5"/></linearGradient></defs></svg>',
+                thumbnail: 'images/thumbnails/chatbot-ai-thumbnail.jpg',
+                thumbnailAlt: 'Robot de inteligencia artificial representando un chatbot para negocios',
                 url: "posts/implementar-chatbot-ia-negocio-mexicano.html",
                 readTime: "5 min"
             },
@@ -237,7 +238,8 @@
                 excerpt: "Descubre cómo la inteligencia artificial puede optimizar tus campañas de Facebook Ads y reducir costos hasta un 40%.",
                 date: "15 Julio 2025",
                 category: "prospeccion",
-                icon: '<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="60" rx="12" fill="url(#phone-gradient)"/><rect x="20" y="12" width="20" height="36" rx="4" fill="white" opacity="0.9"/><rect x="22" y="16" width="16" height="26" rx="2" fill="url(#phone-gradient)" opacity="0.3"/><path d="M25 43.5C25 43.2239 25.2239 43 25.5 43H34.5C34.7761 43 35 43.2239 35 43.5C35 43.7761 34.7761 44 34.5 44H25.5C25.2239 44 25 43.7761 25 43.5Z" fill="url(#phone-gradient)"/><path d="M24 20H36V22H24V20Z" fill="url(#phone-gradient)" opacity="0.5"/><path d="M24 24H36V26H24V24Z" fill="url(#phone-gradient)" opacity="0.5"/><path d="M24 28H36V30H24V28Z" fill="url(#phone-gradient)" opacity="0.5"/><path d="M24 32H36V34H24V32Z" fill="url(#phone-gradient)" opacity="0.5"/><defs><linearGradient id="phone-gradient" x1="0" y1="0" x2="60" y2="60"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#4F46E5"/></linearGradient></defs></svg>',
+                thumbnail: 'images/thumbnails/facebook-ads-thumbnail.jpg',
+                thumbnailAlt: 'Iconos de redes sociales y marketing digital con Facebook Ads',
                 url: "posts/facebook-ads-ia-pymes-mexico.html",
                 readTime: "7 min"
             },
@@ -247,7 +249,8 @@
                 excerpt: "Cómo la inteligencia artificial está revolucionando el desarrollo web y por qué tu negocio necesita adaptarse.",
                 date: "10 Julio 2025",
                 category: "desarrollo",
-                icon: '<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="60" rx="12" fill="url(#web-gradient)"/><circle cx="30" cy="30" r="16" stroke="white" stroke-width="2" opacity="0.9"/><path d="M30 14C30 14 24 20 24 30C24 40 30 46 30 46" stroke="white" stroke-width="2" opacity="0.9"/><path d="M30 14C30 14 36 20 36 30C36 40 30 46 30 46" stroke="white" stroke-width="2" opacity="0.9"/><path d="M14 30H46" stroke="white" stroke-width="2" opacity="0.9"/><path d="M16 22H44" stroke="white" stroke-width="2" opacity="0.9"/><path d="M16 38H44" stroke="white" stroke-width="2" opacity="0.9"/><defs><linearGradient id="web-gradient" x1="0" y1="0" x2="60" y2="60"><stop stop-color="#7C3AED"/><stop offset="1" stop-color="#4F46E5"/></linearGradient></defs></svg>',
+                thumbnail: 'images/thumbnails/web-development-thumbnail.jpg',
+                thumbnailAlt: 'Código de programación en pantalla de laptop mostrando desarrollo web',
                 url: "posts/desarrollo-web-inteligencia-artificial.html",
                 readTime: "6 min"
             }
@@ -268,7 +271,7 @@
             blogGrid.innerHTML = filteredPosts.map(post => `
                 <article class="blog-card">
                     <div class="blog-card-image">
-                        ${post.icon}
+                        <img src="${post.thumbnail}" alt="${post.thumbnailAlt || post.title}" width="800" height="533" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="blog-card-content">
                         <div class="blog-meta">
