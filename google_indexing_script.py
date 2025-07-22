@@ -105,8 +105,8 @@ def main():
     
     # Define URLs to submit
     urls_to_submit = [
-        "https://inteligenciaartificialparanegocios.com/blog/",
-        "https://inteligenciaartificialparanegocios.com/blog/posts/implementar-chatbot-ia-negocio-mexicano.html",
+        "https://inteligenciaartificialparanegocios.com/blog/posts/facebook-ads-ia-pymes-mexico.html",
+        "https://inteligenciaartificialparanegocios.com/blog/posts/desarrollo-web-inteligencia-artificial.html",
         # Add more URLs here as needed
     ]
     

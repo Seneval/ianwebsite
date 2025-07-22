@@ -58,6 +58,7 @@ body {
 .article-header-content {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
+    padding-top: 1rem;
     border-bottom: 1px solid #E5E7EB;
 }
 
