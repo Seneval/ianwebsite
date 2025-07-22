@@ -217,9 +217,8 @@ section {
 }
     </style>
     
-    <!-- Deferred Stylesheets for Non-Critical CSS -->
-    <link rel="preload" href="css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="css/styles.css"></noscript>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/animations.css" media="print" onload="this.media='all'; this.onload=null;">
     
     <!-- Organization Schema for Brand Recognition -->
@@ -1087,5 +1086,18 @@ section {
     <script src="js/animations.js" defer></script>
     <script src="js/chatbot-demo.js" defer></script>
     <script src="js/facebook-events.js" defer></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                console.log('ServiceWorker registration successful');
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+    </script>
 </body>
 </html><!-- Force rebuild: Mon Jun 16 21:42:03 CST 2025 -->
