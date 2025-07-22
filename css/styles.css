@@ -180,6 +180,12 @@ section {
     background-clip: text;
 }
 
+.gradient-text strong {
+    font-weight: 800;
+    display: inline-block;
+    letter-spacing: -0.02em;
+}
+
 .hero-subtitle {
     font-size: 1.25rem;
     color: var(--dark-secondary);
