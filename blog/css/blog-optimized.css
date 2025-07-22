@@ -44,8 +44,8 @@ body {
 
 .article-content {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 100px 20px 60px;
+    margin: 80px auto 0;
+    padding: 40px 20px 60px;
     background: white;
 }
 
