@@ -1,5 +1,5 @@
 // Service Worker for iAN - Cache Strategy
-const CACHE_NAME = 'ian-v1';
+const CACHE_NAME = 'ian-v2';
 const urlsToCache = [
   '/',
   '/css/styles.css',
@@ -8,6 +8,7 @@ const urlsToCache = [
   '/js/animations.js',
   '/js/chatbot-demo.js',
   '/js/performance.js',
+  '/js/facebook-events.js',
   '/assets/logo/logo-40.webp',
   '/assets/logo/logo-80.webp',
   '/assets/logo/logo-160.webp',
