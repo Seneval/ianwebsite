@@ -27,6 +27,34 @@
     <link rel="preconnect" href="https://connect.facebook.net">
     <link rel="preconnect" href="https://www.facebook.com">
     
+    <!-- iOS Safari Gradient Text Fix -->
+    <style>
+        /* Fix for gradient text on iOS Safari */
+        @supports (-webkit-touch-callout: none) {
+            .gradient-text {
+                color: var(--primary-purple) !important;
+                -webkit-text-fill-color: var(--primary-purple) !important;
+                background: none !important;
+                -webkit-background-clip: unset !important;
+                background-clip: unset !important;
+                font-weight: 800;
+            }
+        }
+        
+        /* Alternative approach for iOS */
+        @media screen and (max-width: 768px) {
+            .gradient-text {
+                background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                -webkit-text-stroke: 0.01px transparent;
+                text-shadow: none;
+                filter: contrast(1.2);
+            }
+        }
+    </style>
+    
     <!-- Critical CSS Inlined for Faster FCP -->
     <style>
 /* Critical Above-the-Fold CSS - Inline for faster FCP */
@@ -441,7 +469,7 @@ section {
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
-                        Tu Sitio Web, <span class="gradient-text"><strong>Vendiendo 24/7</strong></span> con Chatbots Inteligentes
+                        Tu Sitio Web, <br class="mobile-break"><span class="gradient-text">Vendiendo 24/7</span> con Chatbots Inteligentes
                     </h1>
                     <p class="hero-subtitle">
                         Olvídate de menús robóticos. Chatbots que hablan como humanos, 
