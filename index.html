@@ -29,28 +29,37 @@
     
     <!-- iOS Safari Gradient Text Fix -->
     <style>
-        /* Fix for gradient text on iOS Safari */
-        @supports (-webkit-touch-callout: none) {
-            .gradient-text {
-                color: var(--primary-purple) !important;
-                -webkit-text-fill-color: var(--primary-purple) !important;
-                background: none !important;
-                -webkit-background-clip: unset !important;
-                background-clip: unset !important;
-                font-weight: 800;
-            }
+        /* Ensure gradient works on all devices including iOS */
+        .gradient-text {
+            background-image: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            font-weight: 800;
         }
         
-        /* Alternative approach for iOS */
-        @media screen and (max-width: 768px) {
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
             .gradient-text {
-                background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+                background-image: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
-                -webkit-text-stroke: 0.01px transparent;
-                text-shadow: none;
-                filter: contrast(1.2);
+                -webkit-text-stroke-width: 0;
+                position: relative;
+                z-index: 1;
+            }
+        }
+        
+        /* Mobile specific adjustments */
+        @media screen and (max-width: 768px) {
+            .gradient-text {
+                display: block;
+                margin: 0.2em 0;
+                font-size: 1.1em;
+                padding: 0 2px;
             }
         }
     </style>
